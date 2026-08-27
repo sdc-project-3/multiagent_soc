@@ -8,6 +8,18 @@
     <meta name="description" content="SentinelX — AI-powered security intelligence platform for real-time cyber defense" />
     <title>SentinelX — AI-Powered Cyber Defense</title>
 
+    <!-- Theme Initialization to prevent flash of unstyled theme -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('sentinelx_theme');
+          var theme = saved === 'light' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.classList.add(theme);
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

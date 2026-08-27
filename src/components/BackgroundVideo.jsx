@@ -56,7 +56,7 @@ export const BackgroundVideo = memo(function BackgroundVideo({
         overflow: 'hidden',
         zIndex: 0,
         pointerEvents: 'none',
-        backgroundColor: '#02030A',
+        backgroundColor: 'var(--color-bg-primary, #02030A)',
       }}
     >
       {/* 1. Fullscreen Video Layer */}
@@ -79,21 +79,21 @@ export const BackgroundVideo = memo(function BackgroundVideo({
             objectFit: 'cover',
             objectPosition: 'center',
             pointerEvents: 'none',
-            opacity: 0.9,
+            opacity: 'var(--color-video-opacity, 0.28)',
           }}
         >
           <source src={src} type="video/mp4" />
         </video>
       )}
 
-      {/* 2. Dark Cyber Atmospheric Overlay */}
+      {/* 2. Cyber Atmospheric Overlay */}
       <div
         className="sentinelx-bg-video-overlay"
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundColor: overlayColor,
-          backgroundImage: overlayGradient,
+          backgroundColor: 'var(--color-video-overlay, rgba(2, 5, 12, 0.48))',
+          backgroundImage: 'var(--color-video-gradient, none)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -106,9 +106,9 @@ export const BackgroundVideo = memo(function BackgroundVideo({
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(ellipse at center, transparent 35%, rgba(1, 3, 8, 0.75) 100%)',
+            background: 'radial-gradient(ellipse at center, transparent 35%, var(--color-hero-vignette, rgba(1, 3, 8, 0.75)) 100%)',
             pointerEvents: 'none',
-            zIndex: 1,
+            zIndex: 2,
           }}
         />
       )}

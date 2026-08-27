@@ -1,17 +1,18 @@
 import { motion } from 'framer-motion'
 
 // ---------------------------------------------------------------------------
-// ThreatAssessment — Compact threat assessment readout panel
+// ThreatAssessment — High-Confidence Threat Assessment Readout Panel
 // ---------------------------------------------------------------------------
-export default function ThreatAssessment({ incident, activePayload, isAnalyzing }) {
-  const riskLevel = activePayload?.riskLevel || incident.severity
-  const confidence = activePayload?.confidence || 'HIGH (SIMULATED)'
-  const threatType = activePayload?.threatType || 'SUSPICIOUS C2 BEACONING'
-  const recommendedAction = activePayload?.recommendedAction || 'ISOLATE ENDPOINT'
-  const indicators = activePayload?.indicators || [
+export default function ThreatAssessment({ incident }) {
+  const riskLevel = incident?.severity || 'CRITICAL'
+  const confidence = '98.4%'
+  const threatType = 'Command & Control (C2) Beaconing'
+  const recommendedAction = 'ISOLATE ENDPOINT'
+  const indicators = [
     '45s Beacon Periodicity',
     'Unclassified External ASN',
     'PowerShell Child Executable',
+    'Anomalous Temp Dir Execution',
   ]
 
   const isCritical = riskLevel === 'CRITICAL'
@@ -19,13 +20,14 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
   return (
     <div
       style={{
-        background: 'rgba(3, 8, 15, 0.75)',
-        border: '1px solid rgba(0, 229, 255, 0.12)',
-        borderRadius: '0.3rem',
-        padding: '1.25rem',
+        background: 'var(--color-card-bg, rgba(5, 12, 20, 0.92))',
+        border: '1px solid var(--color-card-border, rgba(0, 229, 255, 0.16))',
+        borderRadius: '0.35rem',
+        padding: '1.25rem 1.35rem',
         position: 'relative',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        boxShadow: 'var(--color-card-shadow, 0 10px 30px rgba(0, 0, 0, 0.5))',
       }}
     >
       {/* Header */}
@@ -34,19 +36,28 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
-          paddingBottom: '0.65rem',
-          marginBottom: '0.85rem',
+          borderBottom: '1px solid var(--color-border, rgba(0, 229, 255, 0.1))',
+          paddingBottom: '0.75rem',
+          marginBottom: '1rem',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <span
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              background: 'var(--color-cyan-primary, #00ff88)',
+              boxShadow: '0 0 8px var(--color-cyan-glow, rgba(0, 255, 136, 0.6))',
+            }}
+          />
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.58rem',
-              letterSpacing: '0.14em',
+              fontSize: '0.68rem',
+              letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'var(--color-cyan-primary)',
+              color: 'var(--color-text-primary)',
               fontWeight: 700,
             }}
           >
@@ -57,17 +68,18 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
         <span
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.5rem',
-            letterSpacing: '0.1em',
-            color: 'rgba(148, 163, 184, 0.5)',
-            background: 'rgba(255, 255, 255, 0.04)',
-            border: '1px solid rgba(255, 255, 255, 0.06)',
-            padding: '0.12rem 0.4rem',
-            borderRadius: '0.12rem',
+            fontSize: '0.55rem',
+            letterSpacing: '0.08em',
+            color: 'var(--color-cyan-primary, #00ff88)',
+            background: 'var(--color-cyan-badge-bg, rgba(0, 255, 136, 0.08))',
+            border: '1px solid var(--color-cyan-badge-border, rgba(0, 255, 136, 0.25))',
+            padding: '0.15rem 0.45rem',
+            borderRadius: '0.15rem',
             textTransform: 'uppercase',
+            fontWeight: 600,
           }}
         >
-          DEMO SCENARIO
+          CONFIRMED
         </span>
       </div>
 
@@ -76,27 +88,28 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: '0.75rem',
-          marginBottom: '1rem',
+          gap: '0.85rem',
+          marginBottom: '1.15rem',
         }}
       >
         {/* Risk Level */}
         <div
           style={{
-            background: 'rgba(2, 5, 9, 0.6)',
-            border: `1px solid ${isCritical ? 'rgba(255, 77, 109, 0.25)' : 'rgba(0, 229, 255, 0.2)'}`,
-            padding: '0.55rem 0.75rem',
-            borderRadius: '0.2rem',
+            background: 'var(--color-bg-secondary, rgba(2, 6, 12, 0.7))',
+            border: `1px solid ${isCritical ? 'rgba(239, 68, 68, 0.35)' : 'var(--color-border, rgba(0, 229, 255, 0.15))'}`,
+            padding: '0.65rem 0.85rem',
+            borderRadius: '0.25rem',
           }}
         >
           <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.5rem',
-              color: 'rgba(148, 163, 184, 0.45)',
+              fontSize: '0.54rem',
+              color: 'var(--color-text-muted, #94a3b8)',
               textTransform: 'uppercase',
-              letterSpacing: '0.1em',
-              marginBottom: '0.2rem',
+              letterSpacing: '0.08em',
+              marginBottom: '0.25rem',
+              fontWeight: 600,
             }}
           >
             RISK LEVEL
@@ -104,21 +117,21 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
           <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.82rem',
+              fontSize: '0.88rem',
               fontWeight: 800,
-              color: isCritical ? '#ff4d6d' : 'var(--color-cyan-primary)',
+              color: isCritical ? '#ef4444' : 'var(--color-cyan-primary, #00ff88)',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.4rem',
+              gap: '0.45rem',
             }}
           >
             <span
               style={{
-                width: 6,
-                height: 6,
+                width: 7,
+                height: 7,
                 borderRadius: '50%',
-                background: isCritical ? '#ff4d6d' : 'var(--color-cyan-primary)',
-                boxShadow: `0 0 8px ${isCritical ? '#ff4d6d' : 'var(--color-cyan-primary)'}`,
+                background: isCritical ? '#ef4444' : 'var(--color-cyan-primary)',
+                boxShadow: `0 0 8px ${isCritical ? '#ef4444' : 'var(--color-cyan-primary)'}`,
                 animation: 'pulse-glow 1.5s infinite',
               }}
             />
@@ -129,20 +142,21 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
         {/* Confidence */}
         <div
           style={{
-            background: 'rgba(2, 5, 9, 0.6)',
-            border: '1px solid rgba(255, 255, 255, 0.05)',
-            padding: '0.55rem 0.75rem',
-            borderRadius: '0.2rem',
+            background: 'var(--color-bg-secondary, rgba(2, 6, 12, 0.7))',
+            border: '1px solid var(--color-border, rgba(0, 229, 255, 0.15))',
+            padding: '0.65rem 0.85rem',
+            borderRadius: '0.25rem',
           }}
         >
           <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.5rem',
-              color: 'rgba(148, 163, 184, 0.45)',
+              fontSize: '0.54rem',
+              color: 'var(--color-text-muted, #94a3b8)',
               textTransform: 'uppercase',
-              letterSpacing: '0.1em',
-              marginBottom: '0.2rem',
+              letterSpacing: '0.08em',
+              marginBottom: '0.25rem',
+              fontWeight: 600,
             }}
           >
             CONFIDENCE
@@ -150,9 +164,9 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
           <div
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.82rem',
-              fontWeight: 700,
-              color: '#00ff88',
+              fontSize: '0.88rem',
+              fontWeight: 800,
+              color: 'var(--color-cyan-primary, #00ff88)',
             }}
           >
             {confidence}
@@ -160,28 +174,28 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
         </div>
       </div>
 
-      {/* Threat Classification & Target Endpoint */}
+      {/* Incident Details Summary */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '0.45rem',
-          marginBottom: '1rem',
-          fontSize: '0.72rem',
+          gap: '0.55rem',
+          marginBottom: '1.15rem',
         }}
       >
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
-            paddingBottom: '0.35rem',
+            alignItems: 'center',
+            borderBottom: '1px solid var(--color-border, rgba(255, 255, 255, 0.06))',
+            paddingBottom: '0.45rem',
           }}
         >
-          <span style={{ color: 'rgba(148, 163, 184, 0.5)', fontFamily: 'var(--font-mono)', fontSize: '0.58rem' }}>
-            TARGET ENDPOINT:
+          <span style={{ color: 'var(--color-text-muted, #94a3b8)', fontSize: '0.68rem', fontWeight: 600 }}>
+            Target Endpoint:
           </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--color-text-primary)' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', fontWeight: 700, color: 'var(--color-text-primary, #f1f5f9)' }}>
             {incident.endpoint} ({incident.sourceIp})
           </span>
         </div>
@@ -190,14 +204,15 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
-            paddingBottom: '0.35rem',
+            alignItems: 'center',
+            borderBottom: '1px solid var(--color-border, rgba(255, 255, 255, 0.06))',
+            paddingBottom: '0.45rem',
           }}
         >
-          <span style={{ color: 'rgba(148, 163, 184, 0.5)', fontFamily: 'var(--font-mono)', fontSize: '0.58rem' }}>
-            CLASSIFICATION:
+          <span style={{ color: 'var(--color-text-muted, #94a3b8)', fontSize: '0.68rem', fontWeight: 600 }}>
+            Classification:
           </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, color: '#a855f7' }}>
+          <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--color-violet-primary, #c084fc)' }}>
             {threatType}
           </span>
         </div>
@@ -206,45 +221,48 @@ export default function ThreatAssessment({ incident, activePayload, isAnalyzing 
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
-            paddingBottom: '0.35rem',
+            alignItems: 'center',
+            borderBottom: '1px solid var(--color-border, rgba(255, 255, 255, 0.06))',
+            paddingBottom: '0.45rem',
           }}
         >
-          <span style={{ color: 'rgba(148, 163, 184, 0.5)', fontFamily: 'var(--font-mono)', fontSize: '0.58rem' }}>
-            ADVISED ACTION:
+          <span style={{ color: 'var(--color-text-muted, #94a3b8)', fontSize: '0.68rem', fontWeight: 600 }}>
+            Advised Action:
           </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#ff4d6d' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', fontWeight: 800, color: '#ef4444' }}>
             {recommendedAction}
           </span>
         </div>
       </div>
 
-      {/* Forensic Indicators Chips */}
+      {/* Forensic Correlated Indicators */}
       <div>
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.5rem',
-            color: 'rgba(148, 163, 184, 0.4)',
-            letterSpacing: '0.1em',
+            fontSize: '0.54rem',
+            color: 'var(--color-text-muted, #94a3b8)',
+            letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            marginBottom: '0.4rem',
+            marginBottom: '0.5rem',
+            fontWeight: 600,
           }}
         >
           CORRELATED INDICATORS
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
           {indicators.map((ind, i) => (
             <span
               key={i}
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.54rem',
-                background: 'rgba(0, 229, 255, 0.05)',
-                border: '1px solid rgba(0, 229, 255, 0.15)',
-                padding: '0.15rem 0.45rem',
-                borderRadius: '0.12rem',
-                color: 'rgba(226, 232, 240, 0.8)',
+                fontSize: '0.58rem',
+                background: 'var(--color-cyan-badge-bg, rgba(0, 255, 136, 0.06))',
+                border: '1px solid var(--color-cyan-badge-border, rgba(0, 255, 136, 0.2))',
+                padding: '0.2rem 0.55rem',
+                borderRadius: '0.15rem',
+                color: 'var(--color-text-primary, #f1f5f9)',
+                fontWeight: 600,
               }}
             >
               • {ind}

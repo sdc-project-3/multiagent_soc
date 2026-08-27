@@ -83,11 +83,6 @@ export default function HeroScene({
         showFog={true}
       />
 
-      {/* Holographic rings positioned behind the right-side robot subject */}
-      <HolographicRings position={[isMobile ? 0 : 0.8, 0.1, 0]} />
-
-      {!isMobile && <SecurityNodes />}
-
       <DataParticles
         count={isMobile ? 150 : 500}
         spread={9}

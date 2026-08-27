@@ -132,10 +132,11 @@ function CapabilityBlock({ cap, index, isHovered, onHover, onLeave, delay }) {
         flex: 1,
         padding: 'clamp(0.9rem, 1.5vw, 1.25rem)',
         background: active
-          ? 'rgba(0,229,255,0.035)'
-          : 'rgba(255,255,255,0.018)',
-        border: `1px solid ${active ? 'rgba(0,229,255,0.18)' : 'rgba(255,255,255,0.055)'}`,
-        borderRadius: '0.2rem',
+          ? 'var(--color-bg-surface, #ffffff)'
+          : 'var(--color-card-bg, #ffffff)',
+        border: `1px solid ${active ? 'var(--color-cyan-primary)' : 'var(--color-card-border)'}`,
+        borderRadius: '0.25rem',
+        boxShadow: active ? 'var(--color-card-shadow-active)' : 'var(--color-card-shadow)',
         cursor: 'default',
         transition: 'all 250ms ease',
         position: 'relative',
@@ -150,7 +151,7 @@ function CapabilityBlock({ cap, index, isHovered, onHover, onLeave, delay }) {
           style={{
             position: 'absolute',
             inset: 0,
-            background: `radial-gradient(ellipse at 30% 30%, ${cap.accentCol}08, transparent 65%)`,
+            background: `radial-gradient(ellipse at 30% 30%, var(--color-cyan-glow), transparent 65%)`,
             pointerEvents: 'none',
           }}
         />
@@ -170,9 +171,9 @@ function CapabilityBlock({ cap, index, isHovered, onHover, onLeave, delay }) {
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '0.62rem',
-            fontWeight: 700,
+            fontWeight: 800,
             letterSpacing: '0.08em',
-            color: active ? cap.accentCol : 'rgba(255,255,255,0.2)',
+            color: 'var(--color-cyan-primary)',
             transition: 'color 250ms ease',
           }}
         >
@@ -182,7 +183,7 @@ function CapabilityBlock({ cap, index, isHovered, onHover, onLeave, delay }) {
         {/* Icon */}
         <div
           style={{
-            color: active ? cap.accentCol : 'rgba(255,255,255,0.18)',
+            color: 'var(--color-cyan-primary)',
             transition: 'color 250ms ease',
           }}
         >
@@ -193,10 +194,10 @@ function CapabilityBlock({ cap, index, isHovered, onHover, onLeave, delay }) {
       {/* Title */}
       <div
         style={{
-          fontSize: '0.8rem',
-          fontWeight: 600,
+          fontSize: '0.82rem',
+          fontWeight: 700,
           letterSpacing: '0.01em',
-          color: active ? 'var(--color-text-primary)' : 'rgba(148,163,184,0.7)',
+          color: 'var(--color-text-primary)',
           marginBottom: '0.35rem',
           transition: 'color 250ms ease',
         }}
@@ -209,7 +210,7 @@ function CapabilityBlock({ cap, index, isHovered, onHover, onLeave, delay }) {
         style={{
           fontSize: '0.72rem',
           lineHeight: 1.6,
-          color: 'rgba(148,163,184,0.55)',
+          color: 'var(--color-text-secondary)',
         }}
       >
         {cap.body}
@@ -228,12 +229,12 @@ function CapabilityBlock({ cap, index, isHovered, onHover, onLeave, delay }) {
           style={{
             paddingTop: '0.6rem',
             marginTop: '0.5rem',
-            borderTop: `1px solid ${cap.accentCol}18`,
+            borderTop: `1px solid var(--color-border)`,
             fontFamily: 'var(--font-mono)',
             fontSize: '0.58rem',
             lineHeight: 1.65,
             letterSpacing: '0.04em',
-            color: 'rgba(148,163,184,0.4)',
+            color: 'var(--color-text-muted)',
           }}
         >
           {cap.detail}
@@ -262,7 +263,8 @@ export default function CapabilityLayer({ delay = 0 }) {
           fontSize: '0.58rem',
           letterSpacing: '0.16em',
           textTransform: 'uppercase',
-          color: 'rgba(0,229,255,0.4)',
+          color: 'var(--color-cyan-primary)',
+          fontWeight: 700,
           marginBottom: '0.9rem',
         }}
       >

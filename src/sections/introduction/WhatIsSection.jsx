@@ -57,7 +57,8 @@ function SectionEyebrow({ children }) {
         fontSize: '0.62rem',
         letterSpacing: '0.18em',
         textTransform: 'uppercase',
-        color: 'rgba(0,229,255,0.55)',
+        color: 'var(--color-cyan-primary)',
+        fontWeight: 600,
       }}
     >
       {/* Left tick mark */}
@@ -67,7 +68,7 @@ function SectionEyebrow({ children }) {
           display: 'inline-block',
           width: 16,
           height: 1,
-          background: 'rgba(0,229,255,0.35)',
+          background: 'var(--color-cyan-primary)',
         }}
       />
       {children}
@@ -75,10 +76,10 @@ function SectionEyebrow({ children }) {
   )
 }
 
-/** Inline highlight span — cyan tint for key terms */
+/** Inline highlight span — cyber green tint for key terms */
 function Highlight({ children }) {
   return (
-    <span style={{ color: 'rgba(0,229,255,0.85)', fontWeight: 500 }}>
+    <span style={{ color: 'var(--color-cyan-primary)', fontWeight: 600 }}>
       {children}
     </span>
   )
@@ -126,8 +127,6 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
     >
       {/* ================================================================ */}
       {/* Hero → Section 2 transition seam                                 */}
-      {/* A gradient that continues the Hero's dark environment downward,  */}
-      {/* so the page feels like one continuous depth rather than a cut.   */}
       {/* ================================================================ */}
       <div
         aria-hidden="true"
@@ -139,9 +138,8 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
           height: '14rem',
           background: `linear-gradient(
             to bottom,
-            rgba(2,5,9,1)   0%,
-            rgba(2,5,9,0.6) 40%,
-            transparent     100%
+            var(--color-bg-primary) 0%,
+            transparent 100%
           )`,
           zIndex: 1,
           pointerEvents: 'none',
@@ -155,42 +153,28 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
         style={{
           position: 'absolute',
           inset: 0,
-          opacity: 0.28,
+          opacity: 'var(--color-grid-opacity, 0.28)',
           pointerEvents: 'none',
         }}
       />
 
-      {/* Ambient glow blobs — echo the Hero's cyan/violet palette */}
+      {/* Ambient data-orb glow */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '10%',
+          top: '20%',
           right: '-10%',
-          width: 520,
-          height: 520,
+          width: 'clamp(350px, 45vw, 650px)',
+          height: 'clamp(350px, 45vw, 650px)',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0,229,255,0.04) 0%, transparent 65%)',
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          bottom: '15%',
-          left: '-8%',
-          width: 400,
-          height: 400,
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(124,58,237,0.05) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, var(--color-cyan-glow) 0%, transparent 70%)',
+          filter: 'blur(50px)',
           pointerEvents: 'none',
         }}
       />
 
-      {/* ================================================================ */}
       {/* Main content — parallax wrapper                                  */}
-      {/* ================================================================ */}
       <motion.div
         style={{ y: sectionY, position: 'relative', zIndex: 2 }}
       >
@@ -269,7 +253,7 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
                 style={{
                   fontSize: 'clamp(0.85rem, 1.1vw, 0.975rem)',
                   lineHeight: 1.8,
-                  color: 'rgba(148,163,184,0.6)',
+                  color: 'var(--color-text-secondary)',
                   margin: 0,
                 }}
               >
@@ -284,7 +268,7 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
                 variants={revealItem}
                 style={{
                   height: 1,
-                  background: 'linear-gradient(to right, rgba(0,229,255,0.15), transparent)',
+                  background: 'linear-gradient(to right, var(--color-border), transparent)',
                 }}
               />
 
@@ -312,10 +296,11 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
                       fontSize: '0.62rem',
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase',
-                      color: 'rgba(148,163,184,0.45)',
+                      color: 'var(--color-text-muted)',
+                      fontWeight: 600,
                     }}
                   >
-                    <span style={{ color: 'rgba(0,229,255,0.4)', fontSize: '0.55rem' }}>
+                    <span style={{ color: 'var(--color-cyan-primary)', fontSize: '0.55rem' }}>
                       {tag.icon}
                     </span>
                     {tag.label}
@@ -329,8 +314,8 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
                   <div
                     style={{
                       padding: 'clamp(1rem, 2vw, 1.5rem)',
-                      background: 'rgba(4,11,18,0.85)',
-                      border: '1px solid rgba(0,229,255,0.1)',
+                      background: 'var(--color-card-bg, rgba(4,11,18,0.85))',
+                      border: '1px solid var(--color-card-border, rgba(0,229,255,0.1))',
                       borderRadius: '0.3rem',
                       position: 'relative',
                     }}
@@ -358,8 +343,8 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
                 <div
                   style={{
                     padding: 'clamp(1.25rem, 2vw, 1.75rem)',
-                    background: 'rgba(4,11,18,0.9)',
-                    border: '1px solid rgba(0,229,255,0.1)',
+                    background: 'var(--color-card-bg, rgba(4,11,18,0.9))',
+                    border: '1px solid var(--color-card-border, rgba(0,229,255,0.1))',
                     borderRadius: '0.3rem',
                     position: 'relative',
                     minHeight: '380px',
@@ -395,7 +380,7 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.52rem',
                     letterSpacing: '0.1em',
-                    color: 'rgba(148,163,184,0.2)',
+                    color: 'var(--color-text-muted, rgba(148,163,184,0.4))',
                   }}
                 >
                   <span aria-hidden="true">◈</span>
@@ -426,7 +411,7 @@ export default function WhatIsSection({ scrollProgress = 0 }) {
           left: 0,
           right: 0,
           height: '6rem',
-          background: 'linear-gradient(to bottom, transparent, rgba(2,5,9,0.6))',
+          background: 'linear-gradient(to bottom, transparent, var(--color-hero-vignette, rgba(2,5,9,0.6)))',
           zIndex: 1,
           pointerEvents: 'none',
         }}

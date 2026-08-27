@@ -80,277 +80,270 @@ function RobotVisual({ scrollYProgress, isMobile, isTablet, isDesktop, mousePos,
       }}
     >
       {/* ================================================================ */}
-      {/* LAYER 1: Multi-Tier Purple Atmospheric Glow & Rim Lights        */}
-      {/* ================================================================ */}
-
-      {/* Massive soft ambient purple aura */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '48%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: isDesktop ? 'clamp(560px, 50vw, 840px)' : '78vw',
-          height: isDesktop ? 'clamp(560px, 50vw, 840px)' : '78vw',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(124, 58, 237, 0.26) 0%, rgba(109, 40, 217, 0.11) 40%, rgba(76, 29, 149, 0.02) 60%, transparent 72%)',
-          filter: 'blur(38px)',
-          zIndex: 0,
-        }}
-      />
-
-      {/* Intense core violet halo directly behind robot head/chest */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '45%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: isDesktop ? '420px' : '60vw',
-          height: isDesktop ? '420px' : '60vw',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, rgba(124, 58, 237, 0.09) 50%, transparent 70%)',
-          filter: 'blur(22px)',
-          zIndex: 0,
-        }}
-      />
-
-      {/* Subtle Cyan rim lighting flare */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '38%',
-          left: '42%',
-          transform: 'translate(-50%, -50%)',
-          width: isDesktop ? '320px' : '45vw',
-          height: isDesktop ? '320px' : '45vw',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, rgba(0, 229, 255, 0.02) 50%, transparent 70%)',
-          filter: 'blur(22px)',
-          zIndex: 0,
-        }}
-      />
-
-      {/* ================================================================ */}
-      {/* LAYER 2: Futuristic HUD Rings & Tech Graphics (Behind Robot)    */}
-      {/* ================================================================ */}
-      {!isMobile && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '46%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: isDesktop ? '540px' : '400px',
-            height: isDesktop ? '540px' : '400px',
-            zIndex: 1,
-            pointerEvents: 'none',
-            opacity: 0.65,
-          }}
-        >
-          {/* Rotating outer targeting ring */}
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 500 500"
-            fill="none"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              animation: prefersReducedMotion ? 'none' : 'rotate-slow 40s linear infinite',
-            }}
-          >
-            {/* Outer segmented ring */}
-            <circle
-              cx="250"
-              cy="250"
-              r="230"
-              stroke="rgba(0, 229, 255, 0.2)"
-              strokeWidth="1.2"
-              strokeDasharray="14 18 4 18"
-            />
-            {/* Intermediate tech ring */}
-            <circle
-              cx="250"
-              cy="250"
-              r="190"
-              stroke="rgba(124, 58, 237, 0.25)"
-              strokeWidth="1"
-              strokeDasharray="60 30 10 30"
-            />
-            {/* Inner radar arc */}
-            <circle
-              cx="250"
-              cy="250"
-              r="150"
-              stroke="rgba(0, 229, 255, 0.35)"
-              strokeWidth="1.5"
-              strokeDasharray="90 200"
-            />
-            {/* Cardinal tick marks */}
-            <line x1="250" y1="10" x2="250" y2="30" stroke="rgba(0, 229, 255, 0.5)" strokeWidth="1.5" />
-            <line x1="250" y1="470" x2="250" y2="490" stroke="rgba(0, 229, 255, 0.5)" strokeWidth="1.5" />
-            <line x1="10" y1="250" x2="30" y2="250" stroke="rgba(0, 229, 255, 0.5)" strokeWidth="1.5" />
-            <line x1="470" y1="250" x2="490" y2="250" stroke="rgba(0, 229, 255, 0.5)" strokeWidth="1.5" />
-          </svg>
-
-          {/* Counter-rotating dashed sub-ring */}
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 500 500"
-            fill="none"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              animation: prefersReducedMotion ? 'none' : 'rotate-counter 30s linear infinite',
-            }}
-          >
-            <circle
-              cx="250"
-              cy="250"
-              r="120"
-              stroke="rgba(168, 85, 247, 0.3)"
-              strokeWidth="1"
-              strokeDasharray="8 12"
-            />
-            <circle
-              cx="250"
-              cy="250"
-              r="80"
-              stroke="rgba(0, 229, 255, 0.2)"
-              strokeWidth="0.8"
-              strokeDasharray="4 8"
-            />
-          </svg>
-        </div>
-      )}
-
-      {/* ================================================================ */}
-      {/* LAYER 3: Native Transparent Robot PNG with 3D Floating Motion    */}
+      {/* ROBOT & NEURAL CORE ORBITAL SYSTEM (Synchronously 3D Anchored)    */}
       {/* ================================================================ */}
       <div
         style={{
           position: 'relative',
           width: isDesktop
-            ? 'clamp(550px, 54vw, 900px)'
+            ? 'clamp(580px, 54vw, 940px)'
             : isTablet
-            ? '56vw'
-            : '85vw',
-          height: isDesktop
-            ? 'clamp(700px, 125vh, 1050px)'
-            : isTablet
-            ? '70vh'
-            : '54vh',
-          zIndex: 2,
-          display: 'flex',
-          alignItems: isDesktop ? 'flex-start' : 'center',
-          justifyContent: isDesktop ? 'flex-end' : 'center',
-          paddingTop: isDesktop ? '2%' : 0,
+            ? 'min(70vw, 560px)'
+            : 'min(90vw, 420px)',
+          aspectRatio: '1 / 1',
           animation: prefersReducedMotion ? 'none' : 'robot-float-3d 11s ease-in-out infinite',
           transformStyle: 'preserve-3d',
         }}
       >
+        {/* ── LAYER 1: Ambient Glow Centered Directly Behind Robot Head / AI Core ── */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '55%',
+            top: '36%',
+            transform: 'translate(-50%, -50%)',
+            width: '92%',
+            height: '92%',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(124, 58, 237, 0.32) 0%, rgba(0, 229, 255, 0.12) 35%, rgba(0, 255, 136, 0.03) 60%, transparent 75%)',
+            filter: 'blur(40px)',
+            zIndex: 1,
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* ── LAYER 2: Concentric Cybersecurity Orbital Rings (All at cx=400, cy=400) ── */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '55%',
+            top: '36%',
+            transform: 'translate(-50%, -50%)',
+            width: '94%',
+            height: '94%',
+            zIndex: 2,
+            pointerEvents: 'none',
+            transformStyle: 'preserve-3d',
+            opacity: 0.92,
+          }}
+        >
+          {/* Track 1: Outer Firewall Perimeter & Security Shields (cx=400, cy=400) */}
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 800 800"
+            fill="none"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              animation: prefersReducedMotion ? 'none' : 'rotate-slow 65s linear infinite',
+              transformOrigin: '400px 400px',
+            }}
+          >
+            {/* Outer Segmented Defense Ring */}
+            <circle
+              cx="400"
+              cy="400"
+              r="365"
+              stroke="rgba(0, 229, 255, 0.28)"
+              strokeWidth="1.2"
+              strokeDasharray="40 14 6 14 120 14 6 14"
+            />
+
+            {/* 4 Outer Security Shield Corner Brackets */}
+            <path
+              d="M 360 40 L 400 24 L 440 40 L 440 55 C 440 75 400 90 400 90 C 400 90 360 75 360 55 Z"
+              stroke="rgba(0, 255, 136, 0.6)"
+              strokeWidth="1.4"
+              fill="rgba(0, 255, 136, 0.06)"
+            />
+            <path
+              d="M 360 760 L 400 776 L 440 760 L 440 745 C 440 725 400 710 400 710 C 400 710 360 725 360 745 Z"
+              stroke="rgba(0, 255, 136, 0.6)"
+              strokeWidth="1.4"
+              fill="rgba(0, 255, 136, 0.06)"
+            />
+            <path
+              d="M 40 360 L 24 400 L 40 440 L 55 440 C 75 440 90 400 90 400 C 90 400 75 360 55 360 Z"
+              stroke="rgba(0, 229, 255, 0.6)"
+              strokeWidth="1.4"
+              fill="rgba(0, 229, 255, 0.06)"
+            />
+            <path
+              d="M 760 360 L 776 400 L 760 440 L 745 440 C 725 440 710 400 710 400 C 710 400 725 360 745 360 Z"
+              stroke="rgba(0, 229, 255, 0.6)"
+              strokeWidth="1.4"
+              fill="rgba(0, 229, 255, 0.06)"
+            />
+
+            {/* Precision Degree Ticks on Outer Ring */}
+            <line x1="400" y1="28" x2="400" y2="44" stroke="rgba(0, 255, 136, 0.75)" strokeWidth="1.5" />
+            <line x1="400" y1="756" x2="400" y2="772" stroke="rgba(0, 255, 136, 0.75)" strokeWidth="1.5" />
+            <line x1="28" y1="400" x2="44" y2="400" stroke="rgba(0, 229, 255, 0.75)" strokeWidth="1.5" />
+            <line x1="756" y1="400" x2="772" y2="400" stroke="rgba(0, 229, 255, 0.75)" strokeWidth="1.5" />
+
+            {/* Diagonal Reticle Notches */}
+            <path d="M 142 142 L 158 142 L 142 158" stroke="rgba(168, 85, 247, 0.55)" strokeWidth="1.5" />
+            <path d="M 658 142 L 642 142 L 658 158" stroke="rgba(168, 85, 247, 0.55)" strokeWidth="1.5" />
+            <path d="M 142 658 L 158 658 L 142 642" stroke="rgba(168, 85, 247, 0.55)" strokeWidth="1.5" />
+            <path d="M 658 658 L 642 658 L 658 642" stroke="rgba(168, 85, 247, 0.55)" strokeWidth="1.5" />
+
+            {/* Orbiting Firewall Nodes */}
+            <circle cx="400" cy="35" r="4" fill="#00ff88" style={{ filter: 'drop-shadow(0 0 8px #00ff88)' }} />
+            <circle cx="400" cy="765" r="4" fill="#00ff88" style={{ filter: 'drop-shadow(0 0 8px #00ff88)' }} />
+            <circle cx="35" cy="400" r="4" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 8px #00e5ff)' }} />
+            <circle cx="765" cy="400" r="4" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 8px #00e5ff)' }} />
+          </svg>
+
+          {/* Track 2: Hexagonal Cyber Matrix & Circuit Bus Lines (cx=400, cy=400) */}
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 800 800"
+            fill="none"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              animation: prefersReducedMotion ? 'none' : 'rotate-counter 48s linear infinite',
+              transformOrigin: '400px 400px',
+            }}
+          >
+            {/* Hexagonal Cyber Defense Boundary */}
+            <polygon
+              points="400,90 668,245 668,555 400,710 132,555 132,245"
+              stroke="rgba(0, 255, 136, 0.32)"
+              strokeWidth="1.3"
+              strokeDasharray="20 12"
+            />
+
+            {/* Radiating Circuit Board Bus Traces */}
+            <path d="M 400 130 L 400 180 L 430 210 L 430 250" stroke="rgba(0, 229, 255, 0.45)" strokeWidth="1.3" />
+            <circle cx="430" cy="250" r="3.5" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 6px #00e5ff)' }} />
+
+            <path d="M 400 670 L 400 620 L 370 590 L 370 550" stroke="rgba(0, 229, 255, 0.45)" strokeWidth="1.3" />
+            <circle cx="370" cy="550" r="3.5" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 6px #00e5ff)' }} />
+
+            <path d="M 170 270 L 220 270 L 250 300 L 290 300" stroke="rgba(168, 85, 247, 0.5)" strokeWidth="1.3" />
+            <circle cx="290" cy="300" r="3.5" fill="#a855f7" style={{ filter: 'drop-shadow(0 0 6px #a855f7)' }} />
+
+            <path d="M 630 530 L 580 530 L 550 500 L 510 500" stroke="rgba(168, 85, 247, 0.5)" strokeWidth="1.3" />
+            <circle cx="510" cy="500" r="3.5" fill="#a855f7" style={{ filter: 'drop-shadow(0 0 6px #a855f7)' }} />
+
+            {/* Hexagon Vertex Anchor Nodes */}
+            <circle cx="400" cy="90" r="4.5" fill="#00ff88" style={{ filter: 'drop-shadow(0 0 8px #00ff88)' }} />
+            <circle cx="668" cy="245" r="4.5" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 8px #00e5ff)' }} />
+            <circle cx="668" cy="555" r="4.5" fill="#00ff88" style={{ filter: 'drop-shadow(0 0 8px #00ff88)' }} />
+            <circle cx="400" cy="710" r="4.5" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 8px #00e5ff)' }} />
+            <circle cx="132" cy="555" r="4.5" fill="#00ff88" style={{ filter: 'drop-shadow(0 0 8px #00ff88)' }} />
+            <circle cx="132" cy="245" r="4.5" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 8px #00e5ff)' }} />
+          </svg>
+
+          {/* Track 3: Middle Concentric Telemetry & Cryptographic Data Ring (cx=400, cy=400) */}
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 800 800"
+            fill="none"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              animation: prefersReducedMotion ? 'none' : 'rotate-slow 32s linear infinite',
+              transformOrigin: '400px 400px',
+            }}
+          >
+            {/* Main Middle Cyber Ring */}
+            <circle
+              cx="400"
+              cy="400"
+              r="280"
+              stroke="rgba(0, 229, 255, 0.38)"
+              strokeWidth="1.4"
+              strokeDasharray="60 16 12 16"
+            />
+
+            {/* Cryptographic Dashed Middle Track */}
+            <circle
+              cx="400"
+              cy="400"
+              r="230"
+              stroke="rgba(168, 85, 247, 0.35)"
+              strokeWidth="1.2"
+              strokeDasharray="16 10 4 10"
+            />
+
+            {/* Orbiting Middle Node Clusters */}
+            <circle cx="400" cy="120" r="4" fill="#00ff88" style={{ filter: 'drop-shadow(0 0 8px #00ff88)' }} />
+            <circle cx="400" cy="680" r="4" fill="#00ff88" style={{ filter: 'drop-shadow(0 0 8px #00ff88)' }} />
+            <circle cx="120" cy="400" r="4" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 8px #00e5ff)' }} />
+            <circle cx="680" cy="400" r="4" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 8px #00e5ff)' }} />
+          </svg>
+
+          {/* Track 4: Deepest Neural Core Halo & Reticle (cx=400, cy=400) */}
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 800 800"
+            fill="none"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              animation: prefersReducedMotion ? 'none' : 'rotate-counter 22s linear infinite',
+              transformOrigin: '400px 400px',
+            }}
+          >
+            {/* Deepest High-Contrast Core Ring */}
+            <circle
+              cx="400"
+              cy="400"
+              r="175"
+              stroke="rgba(0, 255, 136, 0.6)"
+              strokeWidth="1.6"
+              strokeDasharray="80 30 20 30"
+              style={{ filter: 'drop-shadow(0 0 10px rgba(0, 255, 136, 0.45))' }}
+            />
+
+            {/* Deepest Inner Hexagonal Core Ring */}
+            <polygon
+              points="400,275 508,338 508,462 400,525 292,462 292,338"
+              stroke="rgba(0, 229, 255, 0.5)"
+              strokeWidth="1.3"
+              strokeDasharray="14 8"
+            />
+
+            {/* Deepest Innermost Core Reticle */}
+            <circle
+              cx="400"
+              cy="400"
+              r="115"
+              stroke="rgba(168, 85, 247, 0.55)"
+              strokeWidth="1.4"
+              strokeDasharray="24 16"
+            />
+
+            <circle cx="400" cy="225" r="3.5" fill="#00ff88" style={{ filter: 'drop-shadow(0 0 6px #00ff88)' }} />
+            <circle cx="400" cy="575" r="3.5" fill="#00ff88" style={{ filter: 'drop-shadow(0 0 6px #00ff88)' }} />
+            <circle cx="225" cy="400" r="3.5" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 6px #00e5ff)' }} />
+            <circle cx="575" cy="400" r="3.5" fill="#00e5ff" style={{ filter: 'drop-shadow(0 0 6px #00e5ff)' }} />
+          </svg>
+        </div>
+
+        {/* ── LAYER 3: Native Transparent Robot PNG (Foreground Occlusion) ── */}
         <img
           src={robotImage}
           alt="SentinelX Cyber Security AI Intelligence Subject"
           loading="eager"
           decoding="async"
           style={{
+            position: 'relative',
+            zIndex: 3,
             width: '100%',
             height: '100%',
-            maxWidth: '100%',
-            maxHeight: isDesktop ? '1050px' : '560px',
             objectFit: 'contain',
-            objectPosition: isDesktop ? 'right center' : 'center center',
             display: 'block',
-            // Native transparent PNG with rich cyber depth
             filter: 'drop-shadow(0 20px 35px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 45px rgba(124, 58, 237, 0.25))',
           }}
         />
       </div>
-
-      {/* ================================================================ */}
-      {/* LAYER 4: Foreground Telemetry Accents & HUD Anchors              */}
-      {/* ================================================================ */}
-      {!isMobile && (
-        <>
-          {/* Top-Right Neural Core Lock Indicator */}
-          <div
-            style={{
-              position: 'absolute',
-              top: isDesktop ? '14%' : '12%',
-              right: isDesktop ? '6%' : '8%',
-              zIndex: 3,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.45rem',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.55rem',
-              letterSpacing: '0.14em',
-              color: 'rgba(0, 229, 255, 0.85)',
-              background: 'rgba(2, 5, 9, 0.65)',
-              border: '1px solid rgba(0, 229, 255, 0.25)',
-              padding: '0.25rem 0.65rem',
-              borderRadius: '0.15rem',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
-              pointerEvents: 'none',
-            }}
-          >
-            <span
-              style={{
-                width: 5,
-                height: 5,
-                borderRadius: '50%',
-                background: '#00e5ff',
-                boxShadow: '0 0 6px #00e5ff',
-                animation: 'pulse-glow 2s infinite',
-              }}
-            />
-            TARGET: NEURAL_CORE // LOCKED
-          </div>
-
-          {/* Bottom-Right System Status Chip */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: isDesktop ? '12%' : '8%',
-              right: isDesktop ? '4%' : '6%',
-              zIndex: 3,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.2rem',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.52rem',
-              color: 'rgba(148, 163, 184, 0.65)',
-              background: 'rgba(2, 5, 9, 0.6)',
-              border: '1px solid rgba(124, 58, 237, 0.3)',
-              padding: '0.35rem 0.75rem',
-              borderRadius: '0.2rem',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
-              pointerEvents: 'none',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#00ff88', fontWeight: 700 }}>
-              <span
-                style={{
-                  width: 4,
-                  height: 4,
-                  borderRadius: '50%',
-                  background: '#00ff88',
-                  boxShadow: '0 0 6px #00ff88',
-                }}
-              />
-              SENTINEL // ACTIVE
-            </div>
-            <div style={{ fontSize: '0.48rem', color: 'rgba(0, 229, 255, 0.6)', letterSpacing: '0.08em' }}>
-              SYS.TELEMETRY: 2.4k PKT/S
-            </div>
-          </div>
-        </>
-      )}
 
       {/* Animation keyframes */}
       <style>{`
@@ -392,14 +385,15 @@ function EyebrowTag({ children, pulse = false }) {
         alignItems: 'center',
         gap: '0.5rem',
         padding: '0.28rem 0.72rem',
-        border: '1px solid rgba(0,229,255,0.18)',
+        border: '1px solid var(--color-cyan-badge-border)',
         borderRadius: '0.2rem',
-        background: 'rgba(0,229,255,0.04)',
+        background: 'var(--color-cyan-badge-bg)',
         fontFamily: 'var(--font-mono)',
         fontSize: '0.65rem',
         letterSpacing: '0.16em',
         textTransform: 'uppercase',
         color: 'var(--color-cyan-primary)',
+        fontWeight: 600,
       }}
     >
       {pulse && (
@@ -411,7 +405,7 @@ function EyebrowTag({ children, pulse = false }) {
             borderRadius: '50%',
             background: 'var(--color-cyan-primary)',
             display: 'inline-block',
-            boxShadow: '0 0 6px rgba(0,229,255,0.8)',
+            boxShadow: '0 0 6px var(--color-cyan-glow)',
             animation: 'pulse-glow 2s ease-in-out infinite',
             flexShrink: 0,
           }}
@@ -419,57 +413,6 @@ function EyebrowTag({ children, pulse = false }) {
       )}
       {children}
     </span>
-  )
-}
-
-function SystemStatus({ prefersReducedMotion }) {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
-        gap: '0.25rem',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.4rem',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.6rem',
-          letterSpacing: '0.14em',
-          color: 'rgba(0,229,255,0.6)',
-          textTransform: 'uppercase',
-        }}
-      >
-        <span
-          aria-hidden="true"
-          style={{
-            width: 5,
-            height: 5,
-            borderRadius: '50%',
-            background: '#00ff88',
-            boxShadow: '0 0 8px rgba(0,255,136,0.7)',
-            animation: prefersReducedMotion ? 'none' : 'pulse-glow 3s ease-in-out infinite',
-            flexShrink: 0,
-          }}
-        />
-        {BRAND_CONFIG.status}
-      </div>
-      <div
-        style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.55rem',
-          letterSpacing: '0.12em',
-          color: 'rgba(148,163,184,0.4)',
-          textTransform: 'uppercase',
-        }}
-      >
-        Real-Time Security Intelligence
-      </div>
-    </div>
   )
 }
 
@@ -525,12 +468,12 @@ function StatBlock({ value, label }) {
       </div>
       <div
         style={{
-          marginTop: '0.2rem',
           fontFamily: 'var(--font-mono)',
           fontSize: '0.58rem',
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
-          color: 'rgba(148,163,184,0.45)',
+          color: 'var(--color-text-muted)',
+          marginTop: '0.2rem',
         }}
       >
         {label}
@@ -652,7 +595,7 @@ export default function HeroSection() {
           left: 0,
           right: 0,
           height: '42%',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(2,5,9,0.7) 50%, var(--color-bg-primary, #020509) 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, var(--color-hero-vignette) 50%, var(--color-bg-primary) 100%)',
           zIndex: 2,
           pointerEvents: 'none',
         }}
@@ -667,7 +610,7 @@ export default function HeroSection() {
           left: 0,
           right: 0,
           height: '18%',
-          background: 'linear-gradient(to bottom, rgba(2,5,9,0.75) 0%, rgba(2,5,9,0.3) 60%, transparent 100%)',
+          background: 'linear-gradient(to bottom, var(--color-hero-fade) 0%, transparent 100%)',
           zIndex: 2,
           pointerEvents: 'none',
         }}
@@ -683,7 +626,7 @@ export default function HeroSection() {
             left: 0,
             width: '52%',
             height: '100%',
-            background: 'linear-gradient(to right, rgba(2,5,9,0.92) 0%, rgba(2,5,9,0.70) 45%, rgba(2,5,9,0.2) 80%, transparent 100%)',
+            background: 'linear-gradient(to right, var(--color-hero-fade) 0%, var(--color-hero-vignette) 45%, transparent 100%)',
             zIndex: 2,
             pointerEvents: 'none',
           }}
@@ -697,7 +640,7 @@ export default function HeroSection() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'rgba(2,5,9,0.65)',
+            background: 'var(--color-hero-overlay)',
             zIndex: 2,
             pointerEvents: 'none',
           }}
@@ -727,7 +670,7 @@ export default function HeroSection() {
             alignItems: 'center',
             justifyContent: 'flex-end',
           } : isTablet ? {
-            top: '48%',
+            top: '46%',
             transform: 'translateY(-50%)',
             width: '56vw',
             height: '72vh',
@@ -737,7 +680,7 @@ export default function HeroSection() {
             opacity: 0.85,
           } : {
             left: '50%',
-            top: '48%',
+            top: '46%',
             transform: 'translate(-50%, -50%)',
             width: '90vw',
             height: '54vh',
@@ -778,7 +721,7 @@ export default function HeroSection() {
               gap: isDesktop ? '2rem' : '1.5rem',
               alignItems: 'center',
               minHeight: isMobile ? 'auto' : '520px',
-              paddingTop: isMobile ? '5.5rem' : '4rem',
+              paddingTop: isMobile ? '5.5rem' : isTablet ? '4.5rem' : '4rem',
               paddingBottom: isMobile ? '4rem' : '3rem',
             }}
           >
@@ -794,6 +737,7 @@ export default function HeroSection() {
                 maxWidth: isDesktop ? '540px' : '680px',
                 textAlign: isMobile ? 'center' : 'left',
                 alignItems: isMobile ? 'center' : 'flex-start',
+                paddingTop: isDesktop ? '3.5rem' : isTablet ? '1.25rem' : '0',
               }}
             >
               {/* Eyebrow tag */}
@@ -869,24 +813,6 @@ export default function HeroSection() {
                 <StatBlock value="850+" label="Vectors" />
               </motion.div>
             </motion.div>
-
-            {/* Right Column — HUD Status (Desktop only) */}
-            {isDesktop && (
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                  alignItems: 'flex-start',
-                  height: '100%',
-                  paddingTop: '1rem',
-                }}
-              >
-                <SystemStatus prefersReducedMotion={prefersReducedMotion ?? false} />
-              </motion.div>
-            )}
           </div>
         </div>
       </motion.div>

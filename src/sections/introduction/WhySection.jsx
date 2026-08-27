@@ -58,7 +58,7 @@ export default function WhySection() {
         position: 'relative',
         background: 'var(--color-bg-primary)',
         overflow: 'hidden',
-        borderTop: '1px solid rgba(0, 229, 255, 0.08)',
+        borderTop: '1px solid var(--color-border)',
         paddingTop: 'clamp(5rem, 10vh, 8rem)',
         paddingBottom: 'clamp(5rem, 10vh, 8rem)',
       }}
@@ -70,7 +70,7 @@ export default function WhySection() {
         style={{
           position: 'absolute',
           inset: 0,
-          opacity: 0.22,
+          opacity: 'var(--color-grid-opacity, 0.22)',
           pointerEvents: 'none',
         }}
       />
@@ -86,7 +86,7 @@ export default function WhySection() {
           width: 'clamp(300px, 45vw, 600px)',
           height: 'clamp(300px, 45vw, 600px)',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 229, 255, 0.035) 0%, rgba(124, 58, 237, 0.025) 50%, transparent 70%)',
+          background: 'radial-gradient(circle, var(--color-cyan-glow) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -118,9 +118,10 @@ export default function WhySection() {
                 color: 'var(--color-cyan-primary)',
                 marginBottom: '1rem',
                 padding: '0.25rem 0.75rem',
-                border: '1px solid rgba(0,229,255,0.18)',
+                border: '1px solid var(--color-cyan-badge-border)',
                 borderRadius: '0.2rem',
-                background: 'rgba(0,229,255,0.04)',
+                background: 'var(--color-cyan-badge-bg)',
+                fontWeight: 600,
               }}
             >
               <span
@@ -129,7 +130,7 @@ export default function WhySection() {
                   height: 5,
                   borderRadius: '50%',
                   background: 'var(--color-cyan-primary)',
-                  boxShadow: '0 0 6px var(--color-cyan-primary)',
+                  boxShadow: '0 0 6px var(--color-cyan-glow)',
                 }}
               />
               WHY IT MATTERS

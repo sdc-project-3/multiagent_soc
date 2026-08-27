@@ -4,6 +4,7 @@ import { BRAND_CONFIG } from '../../utils/brandConfig'
 import BackgroundVideo from '../BackgroundVideo'
 import AuthSecurityCore from '../three/AuthSecurityCore'
 import AuthHUDOverlays from './AuthHUDOverlays'
+import ThemeToggle from '../ui/ThemeToggle'
 
 export default function AuthLayout({ children }) {
   const location = useLocation()
@@ -50,7 +51,7 @@ export default function AuthLayout({ children }) {
           width: 'clamp(350px, 45vw, 650px)',
           height: 'clamp(350px, 45vw, 650px)',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, rgba(0, 229, 255, 0.01) 50%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, rgba(0, 255, 136, 0.01) 50%, transparent 70%)',
           filter: 'blur(50px)',
           pointerEvents: 'none',
           zIndex: 2,
@@ -60,12 +61,12 @@ export default function AuthLayout({ children }) {
         aria-hidden="true"
         style={{
           position: 'fixed',
-          bottom: '-15%',
+          bottom: '-10%',
           right: '5%',
-          width: 'clamp(400px, 50vw, 750px)',
-          height: 'clamp(400px, 50vw, 750px)',
+          width: 'clamp(300px, 40vw, 550px)',
+          height: 'clamp(300px, 40vw, 550px)',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(109, 40, 217, 0.02) 50%, transparent 72%)',
+          background: 'radial-gradient(circle, rgba(124, 58, 237, 0.07) 0%, transparent 65%)',
           filter: 'blur(60px)',
           pointerEvents: 'none',
           zIndex: 2,
@@ -85,10 +86,10 @@ export default function AuthLayout({ children }) {
           justifyContent: 'space-between',
           padding: '0 clamp(1rem, 3.5vw, 2.5rem)',
           zIndex: 30,
-          background: 'rgba(2, 3, 10, 0.75)',
+          background: 'var(--color-nav-bg, rgba(2, 3, 10, 0.75))',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
-          borderBottom: '1px solid rgba(0, 229, 255, 0.08)',
+          borderBottom: '1px solid var(--color-border, rgba(0, 255, 136, 0.08))',
         }}
       >
         <Link
@@ -104,12 +105,12 @@ export default function AuthLayout({ children }) {
           <svg width="26" height="26" viewBox="0 0 30 30" fill="none" aria-hidden="true">
             <polygon
               points="15,2 27,8.5 27,21.5 15,28 3,21.5 3,8.5"
-              stroke="#00e5ff"
+              stroke="var(--color-cyan-primary, #00ff88)"
               strokeWidth="1.4"
-              fill="rgba(0,229,255,0.06)"
+              fill="rgba(0,255,136,0.06)"
             />
-            <circle cx="15" cy="15" r="3.5" fill="#00e5ff" opacity="0.85" />
-            <circle cx="15" cy="15" r="5.5" fill="none" stroke="#00e5ff" strokeWidth="0.5" opacity="0.3" />
+            <circle cx="15" cy="15" r="3.5" fill="var(--color-cyan-primary, #00ff88)" opacity="0.85" />
+            <circle cx="15" cy="15" r="5.5" fill="none" stroke="var(--color-cyan-primary, #00ff88)" strokeWidth="0.5" opacity="0.3" />
           </svg>
           <span
             style={{
@@ -125,32 +126,36 @@ export default function AuthLayout({ children }) {
           </span>
         </Link>
 
-        <Link
-          to="/"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.45rem',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.7rem',
-            fontWeight: 600,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: 'var(--color-text-secondary)',
-            textDecoration: 'none',
-            padding: '0.38rem 0.85rem',
-            border: '1px solid rgba(148, 163, 184, 0.2)',
-            borderRadius: '0.2rem',
-            background: 'rgba(255, 255, 255, 0.02)',
-            transition: 'all 180ms ease',
-          }}
-          className="auth-back-btn"
-        >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M7.5 9.5L4 6l3.5-3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          Back to Site
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <ThemeToggle />
+
+          <Link
+            to="/"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.7rem',
+              fontWeight: 600,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'var(--color-text-secondary)',
+              textDecoration: 'none',
+              padding: '0.38rem 0.85rem',
+              border: '1px solid var(--color-border)',
+              borderRadius: '0.2rem',
+              background: 'rgba(255, 255, 255, 0.02)',
+              transition: 'all 180ms ease',
+            }}
+            className="auth-back-btn"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M7.5 9.5L4 6l3.5-3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Back to Site
+          </Link>
+        </div>
       </header>
 
       {/* ── Main Two-Column Split Content ──────────────────── */}
@@ -175,7 +180,7 @@ export default function AuthLayout({ children }) {
             alignItems: 'center',
             justifyContent: 'center',
             minHeight: '400px',
-            borderRight: '1px solid rgba(0, 229, 255, 0.08)',
+            borderRight: '1px solid rgba(0, 255, 136, 0.08)',
             background: 'radial-gradient(ellipse at center, rgba(4, 15, 30, 0.4) 0%, transparent 70%)',
           }}
         >
@@ -229,8 +234,8 @@ export default function AuthLayout({ children }) {
       <style>{`
         .auth-back-btn:hover {
           color: var(--color-cyan-primary) !important;
-          border-color: rgba(0, 229, 255, 0.4) !important;
-          background: rgba(0, 229, 255, 0.06) !important;
+          border-color: rgba(0, 255, 136, 0.4) !important;
+          background: rgba(0, 255, 136, 0.06) !important;
         }
         @media (max-width: 1023px) {
           .auth-split-container {
@@ -242,7 +247,7 @@ export default function AuthLayout({ children }) {
             height: clamp(280px, 36vh, 400px) !important;
             min-height: 280px !important;
             border-right: none !important;
-            border-bottom: 1px solid rgba(0, 229, 255, 0.12) !important;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.12) !important;
           }
           .auth-right-form-pane {
             flex: 1 1 auto !important;

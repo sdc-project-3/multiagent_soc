@@ -7,18 +7,16 @@ export default function FAQItem({ item, index, isOpen, onToggle }) {
   return (
     <div
       style={{
-        background: isOpen ? 'rgba(5, 14, 24, 0.9)' : 'rgba(3, 8, 15, 0.55)',
+        background: isOpen ? 'var(--color-bg-surface, #ffffff)' : 'var(--color-card-bg, #ffffff)',
         border: `1px solid ${
-          isOpen ? 'rgba(0, 229, 255, 0.28)' : 'rgba(255, 255, 255, 0.06)'
+          isOpen ? 'var(--color-cyan-primary)' : 'var(--color-card-border)'
         }`,
-        borderRadius: '0.25rem',
+        borderRadius: '0.35rem',
         marginBottom: '0.65rem',
         transition: 'border-color 250ms ease, background 250ms ease, box-shadow 250ms ease',
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
-        boxShadow: isOpen
-          ? '0 8px 24px -6px rgba(0, 0, 0, 0.6), 0 0 16px rgba(0, 229, 255, 0.05)'
-          : 'none',
+        boxShadow: isOpen ? 'var(--color-card-shadow-active)' : 'var(--color-card-shadow)',
         overflow: 'hidden',
       }}
     >
@@ -43,7 +41,7 @@ export default function FAQItem({ item, index, isOpen, onToggle }) {
           outline: 'none',
         }}
         onFocus={(e) => {
-          e.currentTarget.style.boxShadow = 'inset 0 0 0 1px rgba(0, 229, 255, 0.4)'
+          e.currentTarget.style.boxShadow = 'inset 0 0 0 1px var(--color-cyan-primary)'
         }}
         onBlur={(e) => {
           e.currentTarget.style.boxShadow = 'none'
@@ -56,7 +54,7 @@ export default function FAQItem({ item, index, isOpen, onToggle }) {
               fontFamily: 'var(--font-mono)',
               fontSize: '0.72rem',
               fontWeight: 800,
-              color: isOpen ? 'var(--color-cyan-primary)' : 'rgba(148, 163, 184, 0.4)',
+              color: 'var(--color-cyan-primary)',
               transition: 'color 200ms ease',
             }}
           >
@@ -67,8 +65,8 @@ export default function FAQItem({ item, index, isOpen, onToggle }) {
           <span
             style={{
               fontSize: '0.92rem',
-              fontWeight: 600,
-              color: isOpen ? 'var(--color-text-primary)' : 'rgba(226, 232, 240, 0.85)',
+              fontWeight: 700,
+              color: 'var(--color-text-primary)',
               letterSpacing: '-0.01em',
               transition: 'color 200ms ease',
             }}
@@ -82,9 +80,9 @@ export default function FAQItem({ item, index, isOpen, onToggle }) {
           style={{
             width: 24,
             height: 24,
-            borderRadius: '0.15rem',
-            background: isOpen ? 'rgba(0, 229, 255, 0.12)' : 'rgba(255, 255, 255, 0.03)',
-            border: `1px solid ${isOpen ? 'rgba(0, 229, 255, 0.3)' : 'rgba(255, 255, 255, 0.08)'}`,
+            borderRadius: '0.2rem',
+            background: isOpen ? 'var(--color-cyan-badge-bg)' : 'var(--color-bg-secondary)',
+            border: `1px solid ${isOpen ? 'var(--color-cyan-badge-border)' : 'var(--color-border)'}`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -100,8 +98,9 @@ export default function FAQItem({ item, index, isOpen, onToggle }) {
               fontFamily: 'var(--font-mono)',
               fontSize: '1rem',
               lineHeight: 1,
-              color: isOpen ? 'var(--color-cyan-primary)' : 'rgba(148, 163, 184, 0.6)',
+              color: isOpen ? 'var(--color-cyan-primary)' : 'var(--color-text-muted)',
               userSelect: 'none',
+              fontWeight: 700,
             }}
           >
             +
@@ -125,7 +124,7 @@ export default function FAQItem({ item, index, isOpen, onToggle }) {
             <div
               style={{
                 padding: '0 1.25rem 1.1rem 2.8rem',
-                borderTop: '1px solid rgba(0, 229, 255, 0.06)',
+                borderTop: '1px solid var(--color-border)',
                 paddingTop: '0.85rem',
               }}
             >

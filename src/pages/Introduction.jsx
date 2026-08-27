@@ -3,7 +3,6 @@ import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 import HeroSection from '../sections/introduction/HeroSection'
 import WhatIsSection from '../sections/introduction/WhatIsSection'
-import PipelineSection from '../sections/introduction/PipelineSection'
 import CapabilitiesSection from '../sections/introduction/CapabilitiesSection'
 import AIAnalystSection from '../sections/introduction/AIAnalystSection'
 import WhySection from '../sections/introduction/WhySection'
@@ -46,26 +45,23 @@ export default function Introduction() {
         {/* ── 2. What is SentinelX? ─────────────────────────────── */}
         <WhatIsSection />
 
-        {/* ── 3. Security & Data Pipeline ───────────────────────── */}
-        <PipelineSection />
-
-        {/* ── 4. Core Capabilities ──────────────────────────────── */}
+        {/* ── 3. Core Capabilities ──────────────────────────────── */}
         <CapabilitiesSection />
 
-        {/* ── 5. AI Security Analyst ────────────────────────────── */}
+        {/* ── 4. AI Security Analyst ────────────────────────────── */}
         <AIAnalystSection />
 
-        {/* ── 6. Why It Matters ─────────────────────────────────── */}
+        {/* ── 5. Why It Matters ─────────────────────────────────── */}
         <WhySection />
 
-        {/* ── 7. FAQ ────────────────────────────────────────────── */}
+        {/* ── 6. FAQ ────────────────────────────────────────────── */}
         <FAQSection />
 
-        {/* ── 8. Final CTA ──────────────────────────────────────── */}
+        {/* ── 7. Final CTA ──────────────────────────────────────── */}
         <FinalCTASection />
       </main>
 
-      {/* ── 9. Footer ─────────────────────────────────────────── */}
+      {/* ── 8. Footer ─────────────────────────────────────────── */}
       <Footer />
     </div>
   )

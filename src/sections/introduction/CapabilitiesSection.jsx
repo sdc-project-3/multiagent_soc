@@ -5,7 +5,7 @@ import CapabilityCore from '../../components/three/CapabilityCore'
 import CapabilityNode from './CapabilityNode'
 
 // ---------------------------------------------------------------------------
-// 6 Core Capabilities Data
+// 6 Core Capabilities Data (Cybersecurity / Threat Intelligence Palette)
 // ---------------------------------------------------------------------------
 const CAPABILITIES_DATA = [
   {
@@ -15,7 +15,7 @@ const CAPABILITIES_DATA = [
     tag: 'CONTINUOUS MONITORING',
     description: 'Continuously identify suspicious activity and behavioral anomalies across security telemetry.',
     status: 'ACTIVE',
-    color: '#00e5ff',
+    color: '#00ff88',
     isThreatAlert: false,
   },
   {
@@ -25,7 +25,7 @@ const CAPABILITIES_DATA = [
     tag: 'BEHAVIORAL INTELLIGENCE',
     description: 'Transform complex security events into understandable intelligence for faster investigation.',
     status: 'ANALYZING',
-    color: '#00cfe8',
+    color: '#ccff00',
     isThreatAlert: false,
   },
   {
@@ -35,7 +35,7 @@ const CAPABILITIES_DATA = [
     tag: 'CONTEXT CORRELATION',
     description: 'Correlate detected activity with threat context and known attack patterns.',
     status: 'CORRELATED',
-    color: '#a855f7',
+    color: '#4ade80',
     isThreatAlert: false,
   },
   {
@@ -45,7 +45,7 @@ const CAPABILITIES_DATA = [
     tag: 'UNIFIED TELEMETRY',
     description: 'Maintain a unified view of activity across networks, endpoints, applications and identities.',
     status: 'SYNCHRONIZED',
-    color: '#38bdf8',
+    color: '#84cc16',
     isThreatAlert: false,
   },
   {
@@ -55,8 +55,8 @@ const CAPABILITIES_DATA = [
     tag: 'CONTAINMENT & REMEDIATION',
     description: 'Accelerate containment and remediation when critical threats are identified.',
     status: 'ORCHESTRATING',
-    color: '#ff4d6d',
-    isThreatAlert: true,
+    color: '#bef264',
+    isThreatAlert: false,
   },
   {
     id: 'sec-ops',
@@ -65,7 +65,7 @@ const CAPABILITIES_DATA = [
     tag: 'COMMAND & CONTROL',
     description: 'Give analysts a centralized environment for monitoring, investigation and response.',
     status: 'ONLINE',
-    color: '#00ff88',
+    color: '#10b981',
     isThreatAlert: false,
   },
 ]
@@ -74,20 +74,13 @@ const CAPABILITIES_DATA = [
 // SVG Hub Connecting Lines (Desktop)
 // ---------------------------------------------------------------------------
 function HubConnectors({ activeIndex }) {
-  // SVG lines connecting 6 orbital positions to center (250, 250 in 500x500 box)
-  // 01: Top (250, 40)
-  // 02: Top-Left (60, 140)
-  // 03: Top-Right (440, 140)
-  // 04: Bottom-Left (60, 360)
-  // 05: Bottom-Right (440, 360)
-  // 06: Bottom (250, 460)
   const connections = [
-    { x1: 250, y1: 40, x2: 250, y2: 170, color: '#00e5ff' },
-    { x1: 60, y1: 140, x2: 180, y2: 210, color: '#00cfe8' },
-    { x1: 440, y1: 140, x2: 320, y2: 210, color: '#a855f7' },
-    { x1: 60, y1: 360, x2: 180, y2: 290, color: '#38bdf8' },
-    { x1: 440, y1: 360, x2: 320, y2: 290, color: '#ff4d6d' },
-    { x1: 250, y1: 460, x2: 250, y2: 330, color: '#00ff88' },
+    { x1: 250, y1: 40, x2: 250, y2: 170, color: 'var(--color-cyan-primary)' },
+    { x1: 60, y1: 140, x2: 180, y2: 210, color: 'var(--color-cyan-primary)' },
+    { x1: 440, y1: 140, x2: 320, y2: 210, color: 'var(--color-cyan-primary)' },
+    { x1: 60, y1: 360, x2: 180, y2: 290, color: 'var(--color-cyan-primary)' },
+    { x1: 440, y1: 360, x2: 320, y2: 290, color: 'var(--color-cyan-primary)' },
+    { x1: 250, y1: 460, x2: 250, y2: 330, color: 'var(--color-cyan-primary)' },
   ]
 
   return (
@@ -114,7 +107,7 @@ function HubConnectors({ activeIndex }) {
               y1={c.y1}
               x2={c.x2}
               y2={c.y2}
-              stroke={isCurrent ? c.color : 'rgba(0, 229, 255, 0.12)'}
+              stroke={isCurrent ? 'var(--color-cyan-primary)' : 'var(--color-border)'}
               strokeWidth={isCurrent ? 1.5 : 1}
               strokeDasharray={isCurrent ? 'none' : '4 4'}
               style={{ transition: 'all 300ms ease' }}
@@ -123,9 +116,9 @@ function HubConnectors({ activeIndex }) {
             {isCurrent && (
               <circle
                 r={3}
-                fill={c.color}
+                fill="var(--color-cyan-primary)"
                 style={{
-                  filter: `drop-shadow(0 0 6px ${c.color})`,
+                  filter: `drop-shadow(0 0 6px var(--color-cyan-glow))`,
                 }}
               >
                 <animateMotion
@@ -166,7 +159,7 @@ export default function CapabilitiesSection() {
         position: 'relative',
         background: 'var(--color-bg-primary)',
         overflow: 'hidden',
-        borderTop: '1px solid rgba(0, 229, 255, 0.08)',
+        borderTop: '1px solid var(--color-border)',
         paddingTop: 'clamp(5rem, 10vh, 8rem)',
         paddingBottom: 'clamp(5rem, 10vh, 8rem)',
       }}
@@ -178,7 +171,7 @@ export default function CapabilitiesSection() {
         style={{
           position: 'absolute',
           inset: 0,
-          opacity: 0.22,
+          opacity: 'var(--color-grid-opacity, 0.22)',
           pointerEvents: 'none',
         }}
       />
@@ -194,7 +187,7 @@ export default function CapabilitiesSection() {
           width: 'clamp(320px, 45vw, 650px)',
           height: 'clamp(320px, 45vw, 650px)',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0, 229, 255, 0.04) 0%, rgba(124, 58, 237, 0.03) 45%, transparent 70%)',
+          background: 'radial-gradient(circle, var(--color-cyan-glow) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -226,9 +219,10 @@ export default function CapabilitiesSection() {
                 color: 'var(--color-cyan-primary)',
                 marginBottom: '1rem',
                 padding: '0.25rem 0.75rem',
-                border: '1px solid rgba(0,229,255,0.18)',
+                border: '1px solid var(--color-cyan-badge-border)',
                 borderRadius: '0.2rem',
-                background: 'rgba(0,229,255,0.04)',
+                background: 'var(--color-cyan-badge-bg)',
+                fontWeight: 600,
               }}
             >
               <span
@@ -237,10 +231,10 @@ export default function CapabilitiesSection() {
                   height: 5,
                   borderRadius: '50%',
                   background: 'var(--color-cyan-primary)',
-                  boxShadow: '0 0 6px var(--color-cyan-primary)',
+                  boxShadow: '0 0 6px var(--color-cyan-glow)',
                 }}
               />
-              SECURITY OPERATIONS
+              CORE CAPABILITIES
             </motion.div>
 
             {/* Heading */}
@@ -259,7 +253,16 @@ export default function CapabilitiesSection() {
               }}
             >
               Built to Detect.{' '}
-              <span className="text-gradient-cyan">Engineered to Respond.</span>
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #ccff00 0%, #84cc16 45%, #10b981 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Engineered to Respond.
+              </span>
             </motion.h2>
 
             {/* Supporting paragraph */}
@@ -341,9 +344,10 @@ export default function CapabilitiesSection() {
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.52rem',
                     letterSpacing: '0.14em',
-                    color: 'rgba(0, 229, 255, 0.45)',
+                    color: 'rgba(163, 230, 53, 0.65)',
                     textTransform: 'uppercase',
                     whiteSpace: 'nowrap',
+                    textShadow: '0 0 10px rgba(163, 230, 53, 0.3)',
                   }}
                 >
                   INTELLIGENCE CORE
@@ -413,8 +417,9 @@ export default function CapabilitiesSection() {
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.52rem',
                     letterSpacing: '0.12em',
-                    color: 'rgba(0, 229, 255, 0.45)',
+                    color: 'rgba(163, 230, 53, 0.65)',
                     textTransform: 'uppercase',
+                    textShadow: '0 0 10px rgba(163, 230, 53, 0.3)',
                   }}
                 >
                   INTELLIGENCE CORE
@@ -465,7 +470,7 @@ export default function CapabilitiesSection() {
                     bottom: 10,
                     left: 20,
                     width: 1,
-                    background: 'rgba(0, 229, 255, 0.15)',
+                    background: 'rgba(163, 230, 53, 0.15)',
                     zIndex: 0,
                   }}
                 />

@@ -35,25 +35,17 @@ export default function CapabilityNode({
       style={{
         position: 'relative',
         padding: '1.25rem 1.35rem',
-        background: isActive ? 'rgba(6, 15, 25, 0.88)' : 'rgba(4, 11, 18, 0.5)',
+        background: isActive ? 'var(--color-bg-surface, #ffffff)' : 'var(--color-card-bg, #ffffff)',
         border: `1px solid ${
-          isActive
-            ? capability.isThreatAlert
-              ? 'rgba(255, 77, 109, 0.35)'
-              : 'rgba(0, 229, 255, 0.3)'
-            : 'rgba(255, 255, 255, 0.06)'
+          isActive ? 'var(--color-cyan-primary)' : 'var(--color-card-border)'
         }`,
-        borderRadius: '0.3rem',
+        borderRadius: '0.35rem',
         cursor: 'pointer',
         outline: 'none',
         transition: 'all 250ms cubic-bezier(0.16, 1, 0.3, 1)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        boxShadow: isActive
-          ? `0 12px 28px -8px rgba(0, 0, 0, 0.7), 0 0 20px ${
-              capability.isThreatAlert ? 'rgba(255, 77, 109, 0.12)' : 'rgba(0, 229, 255, 0.12)'
-            }`
-          : 'none',
+        boxShadow: isActive ? 'var(--color-card-shadow-active)' : 'var(--color-card-shadow)',
         transform: isActive && !isMobile ? 'translateY(-2px)' : 'none',
       }}
     >
@@ -68,8 +60,8 @@ export default function CapabilityNode({
               left: 0,
               width: 8,
               height: 8,
-              borderTop: `2px solid ${capability.color}`,
-              borderLeft: `2px solid ${capability.color}`,
+              borderTop: '2px solid var(--color-cyan-primary)',
+              borderLeft: '2px solid var(--color-cyan-primary)',
             }}
           />
           <div
@@ -80,8 +72,8 @@ export default function CapabilityNode({
               right: 0,
               width: 8,
               height: 8,
-              borderBottom: `2px solid ${capability.color}`,
-              borderRight: `2px solid ${capability.color}`,
+              borderBottom: '2px solid var(--color-cyan-primary)',
+              borderRight: '2px solid var(--color-cyan-primary)',
             }}
           />
         </>
@@ -102,7 +94,7 @@ export default function CapabilityNode({
               fontFamily: 'var(--font-mono)',
               fontSize: '0.75rem',
               fontWeight: 800,
-              color: isActive ? capability.color : 'rgba(148, 163, 184, 0.6)',
+              color: 'var(--color-cyan-primary)',
               letterSpacing: '0.06em',
             }}
           >
@@ -112,11 +104,12 @@ export default function CapabilityNode({
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.55rem',
+              fontWeight: 700,
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: isActive ? capability.color : 'rgba(148, 163, 184, 0.4)',
-              background: isActive ? `${capability.color}12` : 'rgba(255, 255, 255, 0.03)',
-              border: `1px solid ${isActive ? `${capability.color}35` : 'rgba(255, 255, 255, 0.05)'}`,
+              color: 'var(--color-cyan-primary)',
+              background: 'var(--color-cyan-badge-bg)',
+              border: '1px solid var(--color-cyan-badge-border)',
               padding: '0.12rem 0.45rem',
               borderRadius: '0.12rem',
               transition: 'all 250ms ease',
@@ -134,8 +127,9 @@ export default function CapabilityNode({
             gap: '0.3rem',
             fontFamily: 'var(--font-mono)',
             fontSize: '0.52rem',
-            color: isActive ? capability.color : 'rgba(148, 163, 184, 0.3)',
+            color: 'var(--color-text-muted)',
             letterSpacing: '0.08em',
+            fontWeight: 600,
           }}
         >
           <div
@@ -143,8 +137,8 @@ export default function CapabilityNode({
               width: 5,
               height: 5,
               borderRadius: '50%',
-              background: isActive ? capability.color : 'rgba(148, 163, 184, 0.25)',
-              boxShadow: isActive ? `0 0 6px ${capability.color}` : 'none',
+              background: isActive ? 'var(--color-cyan-primary)' : 'var(--color-border)',
+              boxShadow: isActive ? '0 0 6px var(--color-cyan-glow)' : 'none',
               animation: isActive ? 'pulse-glow 1.5s infinite ease-in-out' : 'none',
             }}
           />
@@ -157,7 +151,7 @@ export default function CapabilityNode({
         style={{
           fontSize: '1rem',
           fontWeight: 700,
-          color: isActive ? 'var(--color-text-primary)' : 'rgba(226, 232, 240, 0.85)',
+          color: 'var(--color-text-primary)',
           letterSpacing: '-0.015em',
           lineHeight: 1.3,
           marginBottom: '0.45rem',
@@ -172,7 +166,7 @@ export default function CapabilityNode({
         style={{
           fontSize: '0.78rem',
           lineHeight: 1.6,
-          color: isActive ? 'var(--color-text-secondary)' : 'rgba(148, 163, 184, 0.65)',
+          color: 'var(--color-text-secondary)',
           margin: 0,
           transition: 'color 250ms ease',
         }}

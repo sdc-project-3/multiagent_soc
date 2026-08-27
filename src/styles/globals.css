@@ -1,7 +1,7 @@
 /* =============================================================================
-   SENTINEL — Global Design System Stylesheet
+   SENTINELX — Global Design System Stylesheet
    Imports Tailwind CSS v4 and defines CSS custom properties for the
-   cybersecurity platform's visual identity.
+   cybersecurity platform's visual identity, supporting Dark & Light Themes.
    ============================================================================= */
 
 @import "tailwindcss";
@@ -9,8 +9,12 @@
 /* ---------------------------------------------------------------------------
    CSS Custom Properties — Design Tokens
    --------------------------------------------------------------------------- */
-:root {
-  /* Color palette */
+:root,
+:root[data-theme="dark"],
+[data-theme="dark"],
+html.dark,
+body[data-theme="dark"] {
+  /* Color palette — Dark Mode (Default) */
   --color-bg-primary:    #020509;
   --color-bg-secondary:  #050c14;
   --color-bg-surface:    #080f1a;
@@ -20,20 +24,40 @@
   --color-navy-700:      #071019;
   --color-navy-600:      #0a1828;
 
-  --color-cyan-primary:  #00e5ff;
-  --color-cyan-dim:      #00b8d4;
-  --color-cyan-glow:     rgba(0, 229, 255, 0.12);
+  --color-cyan-primary:  #00ff88;
+  --color-cyan-dim:      #00cc6a;
+  --color-cyan-glow:     rgba(0, 255, 136, 0.15);
+  --color-cyan-badge-bg: rgba(0, 255, 136, 0.08);
+  --color-cyan-badge-border: rgba(0, 255, 136, 0.25);
 
-  --color-violet-primary: #7c3aed;
-  --color-violet-dim:     #6d28d9;
-  --color-violet-glow:    rgba(124, 58, 237, 0.10);
+  --color-violet-primary: #a855f7;
+  --color-violet-dim:     #7c3aed;
+  --color-violet-glow:    rgba(168, 85, 247, 0.15);
+  --color-violet-badge-bg: rgba(168, 85, 247, 0.10);
+  --color-violet-badge-border: rgba(168, 85, 247, 0.30);
 
-  --color-text-primary:   #e2e8f0;
+  --color-text-primary:   #f1f5f9;
   --color-text-secondary: #94a3b8;
-  --color-text-muted:     #475569;
+  --color-text-muted:     #64748b;
 
-  --color-border:         rgba(0, 229, 255, 0.08);
-  --color-border-hover:   rgba(0, 229, 255, 0.20);
+  --color-border:         rgba(0, 255, 136, 0.08);
+  --color-border-hover:   rgba(0, 255, 136, 0.20);
+  --color-glass-surface:  rgba(8, 15, 26, 0.65);
+  --color-glass-border:   rgba(0, 255, 136, 0.12);
+  --color-card-bg:        rgba(7, 14, 27, 0.85);
+  --color-card-border:    rgba(0, 255, 136, 0.16);
+  --color-card-shadow:    0 20px 45px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 136, 0.06);
+  --color-card-shadow-active: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 255, 136, 0.2);
+
+  --color-input-bg:       rgba(5, 12, 22, 0.7);
+  --color-input-border:   rgba(255, 255, 255, 0.1);
+
+  --color-hero-vignette:  rgba(2, 5, 9, 0.75);
+  --color-hero-fade:      rgba(2, 5, 9, 0.85);
+  --color-hero-overlay:   rgba(2, 5, 9, 0.65);
+  --color-video-overlay:  rgba(2, 5, 12, 0.48);
+  --color-video-opacity:  0.28;
+  --color-grid-opacity:   0.22;
 
   /* Typography */
   --font-display:  'Inter', 'DM Sans', system-ui, sans-serif;
@@ -44,7 +68,7 @@
   --container-max:     1280px;
 
   /* Glow / FX */
-  --glow-cyan:   0 0 24px rgba(0, 229, 255, 0.25), 0 0 60px rgba(0, 229, 255, 0.08);
+  --glow-cyan:   0 0 24px rgba(0, 255, 136, 0.25), 0 0 60px rgba(0, 255, 136, 0.08);
   --glow-violet: 0 0 24px rgba(124, 58, 237, 0.25), 0 0 60px rgba(124, 58, 237, 0.08);
 
   /* Easing */
@@ -66,6 +90,65 @@
 }
 
 /* ---------------------------------------------------------------------------
+   Light Theme Custom Properties — Enterprise Cybersecurity Palette
+   --------------------------------------------------------------------------- */
+:root[data-theme="light"],
+[data-theme="light"],
+html.light,
+html[data-theme="light"],
+body[data-theme="light"] {
+  /* Color palette — Light Mode */
+  --color-bg-primary:    #f8fafc;
+  --color-bg-secondary:  #f1f5f9;
+  --color-bg-surface:    #ffffff;
+
+  --color-navy-900:      #f8fafc;
+  --color-navy-800:      #f1f5f9;
+  --color-navy-700:      #e2e8f0;
+  --color-navy-600:      #cbd5e1;
+
+  /* High-contrast cybersecurity emerald / lime in light mode */
+  --color-cyan-primary:  #059669;
+  --color-cyan-dim:      #047857;
+  --color-cyan-glow:     rgba(5, 150, 105, 0.18);
+  --color-cyan-badge-bg: rgba(5, 150, 105, 0.08);
+  --color-cyan-badge-border: rgba(5, 150, 105, 0.25);
+
+  --color-violet-primary: #7c3aed;
+  --color-violet-dim:     #6d28d9;
+  --color-violet-glow:    rgba(124, 58, 237, 0.12);
+  --color-violet-badge-bg: rgba(124, 58, 237, 0.08);
+  --color-violet-badge-border: rgba(124, 58, 237, 0.25);
+
+  --color-text-primary:   #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted:     #64748b;
+
+  --color-border:         rgba(203, 213, 225, 0.8);
+  --color-border-hover:   rgba(5, 150, 105, 0.35);
+  --color-glass-surface:  rgba(255, 255, 255, 0.92);
+  --color-glass-border:   rgba(203, 213, 225, 0.8);
+  --color-card-bg:        #ffffff;
+  --color-card-border:    rgba(226, 232, 240, 0.95);
+  --color-card-shadow:    0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --color-card-shadow-active: 0 12px 32px -4px rgba(15, 23, 42, 0.1), 0 0 0 1.5px #059669;
+
+  --color-input-bg:       #ffffff;
+  --color-input-border:   rgba(203, 213, 225, 0.9);
+
+  --color-hero-vignette:  rgba(248, 250, 252, 0.70);
+  --color-hero-fade:      rgba(248, 250, 252, 0.95);
+  --color-hero-overlay:   rgba(248, 250, 252, 0.85);
+  --color-video-overlay:  rgba(248, 250, 252, 0.95);
+  --color-video-opacity:  0.04;
+  --color-grid-opacity:   0.06;
+
+  /* Glow / FX in Light Mode */
+  --glow-cyan:   0 0 20px rgba(5, 150, 105, 0.22), 0 4px 16px rgba(0, 0, 0, 0.06);
+  --glow-violet: 0 0 20px rgba(109, 40, 217, 0.18), 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* ---------------------------------------------------------------------------
    Base Reset & Global Styles
    --------------------------------------------------------------------------- */
 *, *::before, *::after {
@@ -78,6 +161,12 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   color-scheme: dark;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+html[data-theme="light"],
+html.light {
+  color-scheme: light;
 }
 
 body {
@@ -88,6 +177,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
 /* Skip link for accessibility */
@@ -98,7 +188,7 @@ body {
   z-index: 1000;
   padding: 0.6rem 1.2rem;
   background: var(--color-cyan-primary);
-  color: #020509;
+  color: #ffffff;
   font-weight: 700;
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -126,8 +216,13 @@ body {
 }
 
 ::selection {
-  background-color: rgba(0, 229, 255, 0.18);
+  background-color: rgba(0, 255, 136, 0.18);
   color: var(--color-cyan-primary);
+}
+
+[data-theme="light"] ::selection {
+  background-color: rgba(5, 150, 105, 0.22);
+  color: #059669;
 }
 
 /* ---------------------------------------------------------------------------
@@ -165,7 +260,7 @@ body {
 }
 
 .glass-surface {
-  background: rgba(8, 15, 26, 0.6);
+  background: var(--color-glass-surface);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
@@ -173,9 +268,15 @@ body {
 
 .cyber-grid {
   background-image:
-    linear-gradient(rgba(0, 229, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 229, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(0, 255, 136, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.025) 1px, transparent 1px);
   background-size: 48px 48px;
+}
+
+[data-theme="light"] .cyber-grid {
+  background-image:
+    linear-gradient(rgba(5, 150, 105, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(5, 150, 105, 0.045) 1px, transparent 1px);
 }
 
 .canvas-wrapper {
@@ -196,15 +297,19 @@ body {
   text-transform: uppercase;
   border-radius: 0.2rem;
   border: 1px solid var(--color-cyan-primary);
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
 
+[data-theme="light"] .btn-primary-cyan {
+  color: #ffffff;
+}
+
 .btn-primary-cyan:hover, .btn-primary-cyan:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 0 28px rgba(0, 229, 255, 0.3), 0 4px 16px rgba(0, 229, 255, 0.15);
+  box-shadow: 0 0 28px var(--color-cyan-glow), 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .btn-secondary-ghost {
@@ -217,7 +322,7 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 0.2rem;
-  border: 1px solid rgba(148, 163, 184, 0.18);
+  border: 1px solid var(--color-border, rgba(148, 163, 184, 0.18));
   transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
   display: inline-flex;
   align-items: center;
@@ -226,8 +331,77 @@ body {
 
 .btn-secondary-ghost:hover, .btn-secondary-ghost:focus-visible {
   color: var(--color-text-primary);
-  border-color: rgba(148, 163, 184, 0.35);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--color-border-hover, rgba(148, 163, 184, 0.35));
+  background: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="light"] .btn-secondary-ghost {
+  border-color: rgba(203, 213, 225, 0.9);
+}
+
+[data-theme="light"] .btn-secondary-ghost:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: var(--color-cyan-primary);
+}
+
+/* ---------------------------------------------------------------------------
+   Site-Wide Light Theme Component Adaptations
+   --------------------------------------------------------------------------- */
+[data-theme="light"] input[type="text"],
+[data-theme="light"] input[type="email"],
+[data-theme="light"] input[type="password"],
+[data-theme="light"] textarea,
+[data-theme="light"] select,
+.light input[type="text"],
+.light input[type="email"],
+.light input[type="password"],
+.light textarea,
+.light select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] input[type="text"]:focus,
+[data-theme="light"] input[type="email"]:focus,
+[data-theme="light"] input[type="password"]:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus,
+.light input[type="text"]:focus,
+.light input[type="email"]:focus,
+.light input[type="password"]:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15) !important;
+}
+
+[data-theme="light"] table th,
+.light table th {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] table td,
+.light table td {
+  border-color: #f1f5f9 !important;
+}
+
+[data-theme="light"] table tr:hover td,
+.light table tr:hover td {
+  background: rgba(241, 245, 249, 0.6) !important;
+}
+
+[data-theme="light"] footer,
+.light footer {
+  background: #f1f5f9 !important;
+  border-top: 1px solid rgba(226, 232, 240, 0.9) !important;
+}
+
+[data-theme="light"] .sentinelx-bg-video-wrapper,
+.light .sentinelx-bg-video-wrapper {
+  background-color: #f8fafc !important;
 }
 
 /* ---------------------------------------------------------------------------

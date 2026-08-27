@@ -33,16 +33,16 @@ export default function ValuePrinciple({
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       style={{
         padding: '1.25rem 1.35rem',
-        background: isActive ? 'rgba(6, 15, 25, 0.88)' : 'rgba(4, 11, 18, 0.5)',
-        border: `1px solid ${isActive ? 'rgba(0, 229, 255, 0.35)' : 'rgba(255, 255, 255, 0.06)'}`,
-        borderRadius: '0.3rem',
+        background: isActive ? 'var(--color-bg-surface, #ffffff)' : 'var(--color-card-bg, #ffffff)',
+        border: `1px solid ${isActive ? 'var(--color-cyan-primary)' : 'var(--color-card-border)'}`,
+        borderRadius: '0.35rem',
         cursor: 'pointer',
         outline: 'none',
         transition: 'all 250ms cubic-bezier(0.16, 1, 0.3, 1)',
         position: 'relative',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        boxShadow: isActive ? '0 10px 25px -8px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 229, 255, 0.08)' : 'none',
+        boxShadow: isActive ? 'var(--color-card-shadow-active)' : 'var(--color-card-shadow)',
       }}
     >
       {/* Corner HUD accent */}
@@ -90,7 +90,7 @@ export default function ValuePrinciple({
               fontFamily: 'var(--font-mono)',
               fontSize: '0.78rem',
               fontWeight: 800,
-              color: isActive ? 'var(--color-cyan-primary)' : 'rgba(148, 163, 184, 0.6)',
+              color: 'var(--color-cyan-primary)',
             }}
           >
             {principle.number}
@@ -99,11 +99,12 @@ export default function ValuePrinciple({
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.52rem',
+              fontWeight: 700,
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: isActive ? 'var(--color-cyan-primary)' : 'rgba(148, 163, 184, 0.4)',
-              background: isActive ? 'rgba(0, 229, 255, 0.1)' : 'rgba(255, 255, 255, 0.03)',
-              border: `1px solid ${isActive ? 'rgba(0, 229, 255, 0.3)' : 'rgba(255, 255, 255, 0.05)'}`,
+              color: 'var(--color-cyan-primary)',
+              background: 'var(--color-cyan-badge-bg)',
+              border: '1px solid var(--color-cyan-badge-border)',
               padding: '0.1rem 0.45rem',
               borderRadius: '0.12rem',
               transition: 'all 250ms ease',
@@ -115,11 +116,11 @@ export default function ValuePrinciple({
 
         <div
           style={{
-            width: 5,
-            height: 5,
+            width: 6,
+            height: 6,
             borderRadius: '50%',
-            background: isActive ? 'var(--color-cyan-primary)' : 'rgba(148, 163, 184, 0.2)',
-            boxShadow: isActive ? '0 0 6px var(--color-cyan-primary)' : 'none',
+            background: isActive ? 'var(--color-cyan-primary)' : 'var(--color-border)',
+            boxShadow: isActive ? '0 0 6px var(--color-cyan-glow)' : 'none',
           }}
         />
       </div>
@@ -129,7 +130,7 @@ export default function ValuePrinciple({
         style={{
           fontSize: '1rem',
           fontWeight: 700,
-          color: isActive ? 'var(--color-text-primary)' : 'rgba(226, 232, 240, 0.85)',
+          color: 'var(--color-text-primary)',
           letterSpacing: '-0.015em',
           marginBottom: '0.45rem',
           transition: 'color 250ms ease',
@@ -143,7 +144,7 @@ export default function ValuePrinciple({
         style={{
           fontSize: '0.78rem',
           lineHeight: 1.6,
-          color: isActive ? 'var(--color-text-secondary)' : 'rgba(148, 163, 184, 0.65)',
+          color: 'var(--color-text-secondary)',
           margin: 0,
           transition: 'color 250ms ease',
         }}

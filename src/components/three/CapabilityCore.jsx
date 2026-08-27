@@ -26,8 +26,8 @@ function CentralOrb({ activeIndex }) {
     }
   })
 
-  const coreColor = activeIndex !== null ? '#00e5ff' : '#38bdf8'
-  const emissiveColor = activeIndex !== null ? '#7c3aed' : '#00e5ff'
+  const coreColor = activeIndex !== null ? '#ccff00' : '#84cc16'
+  const emissiveColor = activeIndex !== null ? '#22c55e' : '#15803d'
 
   return (
     <group>
@@ -48,7 +48,7 @@ function CentralOrb({ activeIndex }) {
       <mesh ref={innerRef}>
         <icosahedronGeometry args={[0.42, 0]} />
         <meshBasicMaterial
-          color="#00e5ff"
+          color="#ccff00"
           wireframe={false}
           transparent
           opacity={0.85}
@@ -56,8 +56,8 @@ function CentralOrb({ activeIndex }) {
       </mesh>
 
       {/* Center point glow */}
-      <pointLight color="#00e5ff" intensity={3} distance={4} />
-      <pointLight color="#7c3aed" intensity={2} distance={3} />
+      <pointLight color="#ccff00" intensity={2.8} distance={4} />
+      <pointLight color="#22c55e" intensity={2} distance={3} />
     </group>
   )
 }
@@ -91,9 +91,9 @@ function CoreHoloRings({ activeIndex }) {
       <mesh ref={ring1Ref}>
         <torusGeometry args={[1.25, 0.012, 8, 64]} />
         <meshBasicMaterial
-          color="#00e5ff"
+          color="#ccff00"
           transparent
-          opacity={highlight ? 0.6 : 0.35}
+          opacity={highlight ? 0.65 : 0.35}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
@@ -102,9 +102,9 @@ function CoreHoloRings({ activeIndex }) {
       <mesh ref={ring2Ref} rotation={[0.4, 0.2, 0]}>
         <torusGeometry args={[1.65, 0.01, 8, 64]} />
         <meshBasicMaterial
-          color="#7c3aed"
+          color="#22c55e"
           transparent
-          opacity={highlight ? 0.55 : 0.3}
+          opacity={highlight ? 0.55 : 0.28}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
@@ -113,7 +113,7 @@ function CoreHoloRings({ activeIndex }) {
       <mesh ref={ring3Ref} rotation={[-0.3, 0.5, 0]}>
         <torusGeometry args={[2.05, 0.008, 8, 64]} />
         <meshBasicMaterial
-          color="#00e5ff"
+          color="#84cc16"
           transparent
           opacity={highlight ? 0.45 : 0.22}
           blending={THREE.AdditiveBlending}
@@ -155,7 +155,7 @@ function SatelliteNodes({ activeIndex }) {
           >
             <sphereGeometry args={[0.065, 8, 8]} />
             <meshBasicMaterial
-              color={isCurrent ? '#00ff88' : i % 2 === 0 ? '#00e5ff' : '#7c3aed'}
+              color={isCurrent ? '#ccff00' : i % 2 === 0 ? '#84cc16' : '#22c55e'}
               transparent
               opacity={isCurrent ? 1 : 0.65}
               blending={THREE.AdditiveBlending}
@@ -198,7 +198,7 @@ function CoreParticles({ count = 80 }) {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        color="#00e5ff"
+        color="#a3e635"
         size={0.022}
         transparent
         opacity={0.4}

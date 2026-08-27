@@ -65,13 +65,13 @@ export default function Login() {
         style={{
           width: '100%',
           maxWidth: '470px',
-          background: 'rgba(7, 14, 27, 0.85)',
+          background: 'var(--color-card-bg, rgba(7, 14, 27, 0.85))',
           backdropFilter: 'blur(28px)',
           WebkitBackdropFilter: 'blur(28px)',
-          border: '1px solid rgba(0, 229, 255, 0.16)',
+          border: '1px solid var(--color-card-border, rgba(0, 255, 136, 0.16))',
           borderRadius: '1.25rem',
           padding: 'clamp(1.5rem, 4.5vw, 2.3rem)',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(124, 58, 237, 0.1)',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px var(--color-cyan-glow)',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -85,7 +85,7 @@ export default function Login() {
             left: '15%',
             right: '15%',
             height: '1px',
-            background: 'linear-gradient(90deg, transparent, #00e5ff, transparent)',
+            background: 'linear-gradient(90deg, transparent, var(--color-cyan-primary), transparent)',
           }}
         />
 
@@ -96,12 +96,12 @@ export default function Login() {
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
               <path
                 d="M16 2L28 6.8V15.2C28 22.8 22.8 28.6 16 30.5C9.2 28.6 4 22.8 4 15.2V6.8L16 2Z"
-                stroke="#38bdf8"
+                stroke="var(--color-cyan-primary)"
                 strokeWidth="1.8"
-                fill="rgba(56, 189, 248, 0.08)"
+                fill="var(--color-cyan-glow)"
               />
-              <circle cx="16" cy="14" r="3.2" stroke="#a855f7" strokeWidth="1.6" fill="rgba(168, 85, 247, 0.2)" />
-              <path d="M14.5 16L13.5 21H18.5L17.5 16" stroke="#a855f7" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="16" cy="14" r="3.2" stroke="var(--color-violet-primary)" strokeWidth="1.6" fill="var(--color-violet-glow)" />
+              <path d="M14.5 16L13.5 21H18.5L17.5 16" stroke="var(--color-violet-primary)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
 
             <span
@@ -109,7 +109,7 @@ export default function Login() {
                 fontWeight: 800,
                 fontSize: '1.25rem',
                 letterSpacing: '0.08em',
-                color: '#ffffff',
+                color: 'var(--color-text-primary)',
                 textTransform: 'uppercase',
               }}
             >
@@ -123,14 +123,14 @@ export default function Login() {
               fontSize: 'clamp(1.25rem, 3.2vw, 1.5rem)',
               fontWeight: 700,
               letterSpacing: '-0.02em',
-              color: '#ffffff',
+              color: 'var(--color-text-primary)',
               margin: '0 0 0.25rem 0',
             }}
           >
             Secure Access Portal
           </h1>
 
-          <p style={{ fontSize: '0.78rem', color: 'rgba(148, 163, 184, 0.85)', margin: 0 }}>
+          <p style={{ fontSize: '0.78rem', color: 'var(--color-text-secondary)', margin: 0 }}>
             Connect to your security intelligence platform.
           </p>
         </div>

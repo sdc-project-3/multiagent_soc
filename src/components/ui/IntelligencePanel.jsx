@@ -54,15 +54,16 @@ function PipelineStage({ stage, index, isActive, delay }) {
         gap: '0.75rem',
         padding: '0.55rem 0.75rem',
         background: isActive
-          ? `rgba(${stage.col === '#7c3aed' ? '124,58,237' : '0,229,255'},0.06)`
-          : 'rgba(255,255,255,0.015)',
+          ? `rgba(${stage.col === '#7c3aed' ? '124,58,237' : '5,150,105'},0.08)`
+          : 'var(--color-glass-surface, rgba(255,255,255,0.02))',
         border: `1px solid ${isActive
-          ? (stage.col === '#7c3aed' ? 'rgba(124,58,237,0.25)' : 'rgba(0,229,255,0.2)')
-          : 'rgba(255,255,255,0.04)'}`,
-        borderRadius: '0.18rem',
+          ? (stage.col === '#7c3aed' ? 'rgba(124,58,237,0.35)' : 'var(--color-cyan-primary)')
+          : 'var(--color-border, rgba(255,255,255,0.06))'}`,
+        borderRadius: '0.22rem',
         transition: 'all 300ms ease',
         position: 'relative',
         overflow: 'hidden',
+        boxShadow: isActive ? '0 4px 12px var(--color-cyan-glow)' : 'none',
       }}
     >
       {/* Active scan highlight */}
@@ -72,7 +73,7 @@ function PipelineStage({ stage, index, isActive, delay }) {
             position: 'absolute',
             inset: 0,
             background: `linear-gradient(90deg, transparent, ${
-              stage.col === '#7c3aed' ? 'rgba(124,58,237,0.04)' : 'rgba(0,229,255,0.04)'
+              stage.col === '#7c3aed' ? 'rgba(124,58,237,0.08)' : 'rgba(5,150,105,0.08)'
             }, transparent)`,
             animation: 'scan-sweep 2s ease-in-out infinite',
           }}
@@ -84,13 +85,13 @@ function PipelineStage({ stage, index, isActive, delay }) {
         style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '0.52rem',
-          fontWeight: 600,
+          fontWeight: 700,
           letterSpacing: '0.08em',
-          color: isActive ? stage.col : 'rgba(255,255,255,0.2)',
+          color: isActive ? (stage.col === '#7c3aed' ? 'var(--color-violet-primary)' : 'var(--color-cyan-primary)') : 'var(--color-text-muted)',
           padding: '0.18rem 0.32rem',
-          border: `1px solid ${isActive ? `${stage.col}44` : 'rgba(255,255,255,0.06)'}`,
-          borderRadius: '0.1rem',
-          background: isActive ? `${stage.col}10` : 'transparent',
+          border: `1px solid ${isActive ? (stage.col === '#7c3aed' ? 'var(--color-violet-badge-border)' : 'var(--color-cyan-badge-border)') : 'var(--color-border)'}`,
+          borderRadius: '0.12rem',
+          background: isActive ? (stage.col === '#7c3aed' ? 'var(--color-violet-badge-bg)' : 'var(--color-cyan-badge-bg)') : 'transparent',
           transition: 'all 300ms ease',
           flexShrink: 0,
           minWidth: '2.6rem',
@@ -106,7 +107,7 @@ function PipelineStage({ stage, index, isActive, delay }) {
           style={{
             fontSize: '0.72rem',
             fontWeight: 600,
-            color: isActive ? 'var(--color-text-primary)' : 'rgba(148,163,184,0.5)',
+            color: 'var(--color-text-primary)',
             letterSpacing: '0.01em',
             transition: 'color 300ms ease',
             whiteSpace: 'nowrap',
@@ -120,8 +121,8 @@ function PipelineStage({ stage, index, isActive, delay }) {
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '0.56rem',
-            letterSpacing: '0.1em',
-            color: 'rgba(148,163,184,0.3)',
+            letterSpacing: '0.08em',
+            color: 'var(--color-text-muted)',
             marginTop: '0.1rem',
             textTransform: 'uppercase',
           }}
@@ -136,7 +137,7 @@ function PipelineStage({ stage, index, isActive, delay }) {
           width: 5,
           height: 5,
           borderRadius: '50%',
-          background: isActive ? stage.col : 'rgba(255,255,255,0.08)',
+          background: isActive ? (stage.col === '#7c3aed' ? 'var(--color-violet-primary)' : 'var(--color-cyan-primary)') : 'var(--color-border)',
           boxShadow: isActive ? `0 0 6px ${stage.col}` : 'none',
           flexShrink: 0,
           transition: 'all 300ms ease',
@@ -169,7 +170,7 @@ function PacketFeed({ packets, isMobile }) {
           alignItems: 'center',
           justifyContent: 'space-between',
           paddingBottom: '0.4rem',
-          borderBottom: '1px solid rgba(0,229,255,0.08)',
+          borderBottom: '1px solid var(--color-border)',
           marginBottom: '0.2rem',
         }}
       >
@@ -179,7 +180,8 @@ function PacketFeed({ packets, isMobile }) {
             fontSize: '0.55rem',
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: 'rgba(0,229,255,0.5)',
+            color: 'var(--color-cyan-primary)',
+            fontWeight: 700,
           }}
         >
           Live Events
@@ -188,8 +190,9 @@ function PacketFeed({ packets, isMobile }) {
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '0.52rem',
-            color: 'rgba(0,255,136,0.6)',
+            color: 'var(--color-cyan-primary)',
             letterSpacing: '0.1em',
+            fontWeight: 600,
           }}
         >
           ● STREAMING
@@ -197,7 +200,7 @@ function PacketFeed({ packets, isMobile }) {
       </div>
 
       {/* Event rows */}
-      {packets.slice(0, isMobile ? 4 : 7).map((pkt, i) => (
+      {packets.slice(0, isMobile ? 4 : 7).map((pkt) => (
         <motion.div
           key={pkt.id}
           initial={{ opacity: 0, x: 12 }}
@@ -209,11 +212,11 @@ function PacketFeed({ packets, isMobile }) {
             gap: '0.5rem',
             padding: '0.3rem 0.5rem',
             background: pkt.type === 'anomaly'
-              ? 'rgba(255,80,80,0.04)'
-              : 'rgba(255,255,255,0.018)',
+              ? 'rgba(239,68,68,0.08)'
+              : 'var(--color-bg-secondary, rgba(255,255,255,0.02))',
             border: `1px solid ${pkt.type === 'anomaly'
-              ? 'rgba(255,80,80,0.12)'
-              : 'rgba(255,255,255,0.04)'}`,
+              ? 'rgba(239,68,68,0.25)'
+              : 'var(--color-border, rgba(255,255,255,0.05))'}`,
             borderRadius: '0.15rem',
           }}
         >
@@ -224,10 +227,10 @@ function PacketFeed({ packets, isMobile }) {
               height: 4,
               borderRadius: '50%',
               flexShrink: 0,
-              background: pkt.type === 'anomaly' ? '#ff5050' : '#00e5ff',
+              background: pkt.type === 'anomaly' ? '#ef4444' : 'var(--color-cyan-primary)',
               boxShadow: pkt.type === 'anomaly'
-                ? '0 0 5px rgba(255,80,80,0.7)'
-                : '0 0 4px rgba(0,229,255,0.5)',
+                ? '0 0 5px rgba(239,68,68,0.7)'
+                : '0 0 4px var(--color-cyan-glow)',
             }}
           />
 
@@ -237,7 +240,8 @@ function PacketFeed({ packets, isMobile }) {
               fontFamily: 'var(--font-mono)',
               fontSize: '0.58rem',
               letterSpacing: '0.08em',
-              color: pkt.type === 'anomaly' ? 'rgba(255,120,120,0.9)' : 'rgba(148,163,184,0.7)',
+              color: pkt.type === 'anomaly' ? '#ef4444' : 'var(--color-text-secondary)',
+              fontWeight: pkt.type === 'anomaly' ? 700 : 500,
               flex: 1,
             }}
           >
@@ -249,27 +253,13 @@ function PacketFeed({ packets, isMobile }) {
             <span
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.52rem',
-                letterSpacing: '0.08em',
-                color: pkt.resultCol,
-                whiteSpace: 'nowrap',
+                fontSize: '0.5rem',
+                letterSpacing: '0.06em',
+                color: pkt.type === 'anomaly' ? '#ef4444' : 'var(--color-cyan-primary)',
+                fontWeight: 700,
               }}
             >
               {pkt.result}
-            </span>
-          )}
-
-          {/* Processing indicator */}
-          {pkt.stage < 4 && (
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.5rem',
-                color: 'rgba(0,229,255,0.35)',
-                letterSpacing: '0.06em',
-              }}
-            >
-              STAGE {pkt.stage + 1}/5
             </span>
           )}
         </motion.div>
@@ -283,70 +273,30 @@ function PacketFeed({ packets, isMobile }) {
 // ---------------------------------------------------------------------------
 
 export default function IntelligencePanel({ isVisible = true }) {
-  const isMobile = useMediaQuery('(max-width: 768px)')
   const [activeStage, setActiveStage] = useState(0)
   const [packets, setPackets] = useState([])
   const packetIdRef = useRef(0)
-  const templateIndexRef = useRef(0)
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
-  // Cycle the active stage indicator
+  // Simulation timer — progresses stage and injects live packets
   useEffect(() => {
     if (!isVisible) return
+
     const interval = setInterval(() => {
-      setActiveStage((s) => (s + 1) % PIPELINE_STAGES.length)
-    }, 1200)
-    return () => clearInterval(interval)
-  }, [isVisible])
+      setActiveStage((prev) => (prev + 1) % PIPELINE_STAGES.length)
 
-  // Spawn new packets periodically
-  useEffect(() => {
-    if (!isVisible) return
-
-    const spawnPacket = () => {
-      const template = PACKET_TEMPLATES[templateIndexRef.current % PACKET_TEMPLATES.length]
-      templateIndexRef.current++
-
-      const id = packetIdRef.current++
+      const template = PACKET_TEMPLATES[Math.floor(Math.random() * PACKET_TEMPLATES.length)]
       const newPacket = {
-        id,
+        id: ++packetIdRef.current,
         ...template,
-        stage: 0,
-        fading: false,
+        stage: 1,
+        time: Date.now(),
       }
 
-      setPackets((prev) => [newPacket, ...prev].slice(0, 10))
-
-      // Advance the packet through stages
-      let stage = 0
-      const advance = setInterval(() => {
-        stage++
-        if (stage >= PIPELINE_STAGES.length) {
-          clearInterval(advance)
-          // Fade out after staying at final stage
-          setTimeout(() => {
-            setPackets((prev) =>
-              prev.map((p) => (p.id === id ? { ...p, fading: true } : p))
-            )
-            setTimeout(() => {
-              setPackets((prev) => prev.filter((p) => p.id !== id))
-            }, 500)
-          }, 2500)
-        } else {
-          setPackets((prev) =>
-            prev.map((p) => (p.id === id ? { ...p, stage } : p))
-          )
-        }
-      }, 600)
-
-      return () => clearInterval(advance)
-    }
-
-    // Spawn first packet right away, then on interval
-    const firstTimeout = setTimeout(spawnPacket, 400)
-    const interval = setInterval(spawnPacket, isMobile ? 3500 : 2200)
+      setPackets((prev) => [newPacket, ...prev.slice(0, 10)])
+    }, 1800)
 
     return () => {
-      clearTimeout(firstTimeout)
       clearInterval(interval)
     }
   }, [isVisible, isMobile])
@@ -370,8 +320,8 @@ export default function IntelligencePanel({ isVisible = true }) {
           left: 0,
           width: 16,
           height: 16,
-          borderTop: '1.5px solid rgba(0,229,255,0.3)',
-          borderLeft: '1.5px solid rgba(0,229,255,0.3)',
+          borderTop: '1.5px solid var(--color-cyan-primary)',
+          borderLeft: '1.5px solid var(--color-cyan-primary)',
           pointerEvents: 'none',
         }}
       />
@@ -383,8 +333,8 @@ export default function IntelligencePanel({ isVisible = true }) {
           right: 0,
           width: 16,
           height: 16,
-          borderTop: '1.5px solid rgba(0,229,255,0.3)',
-          borderRight: '1.5px solid rgba(0,229,255,0.3)',
+          borderTop: '1.5px solid var(--color-cyan-primary)',
+          borderRight: '1.5px solid var(--color-cyan-primary)',
           pointerEvents: 'none',
         }}
       />
@@ -396,8 +346,8 @@ export default function IntelligencePanel({ isVisible = true }) {
           left: 0,
           width: 16,
           height: 16,
-          borderBottom: '1.5px solid rgba(0,229,255,0.3)',
-          borderLeft: '1.5px solid rgba(0,229,255,0.3)',
+          borderBottom: '1.5px solid var(--color-cyan-primary)',
+          borderLeft: '1.5px solid var(--color-cyan-primary)',
           pointerEvents: 'none',
         }}
       />
@@ -409,8 +359,8 @@ export default function IntelligencePanel({ isVisible = true }) {
           right: 0,
           width: 16,
           height: 16,
-          borderBottom: '1.5px solid rgba(0,229,255,0.3)',
-          borderRight: '1.5px solid rgba(0,229,255,0.3)',
+          borderBottom: '1.5px solid var(--color-cyan-primary)',
+          borderRight: '1.5px solid var(--color-cyan-primary)',
           pointerEvents: 'none',
         }}
       />
@@ -422,7 +372,7 @@ export default function IntelligencePanel({ isVisible = true }) {
           alignItems: 'center',
           justifyContent: 'space-between',
           paddingBottom: '0.6rem',
-          borderBottom: '1px solid rgba(0,229,255,0.07)',
+          borderBottom: '1px solid var(--color-border)',
         }}
       >
         <div
@@ -431,7 +381,8 @@ export default function IntelligencePanel({ isVisible = true }) {
             fontSize: '0.58rem',
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            color: 'rgba(0,229,255,0.55)',
+            color: 'var(--color-cyan-primary)',
+            fontWeight: 700,
           }}
         >
           Intelligence Pipeline
@@ -443,8 +394,9 @@ export default function IntelligencePanel({ isVisible = true }) {
             gap: '0.35rem',
             fontFamily: 'var(--font-mono)',
             fontSize: '0.52rem',
-            color: 'rgba(0,255,136,0.6)',
+            color: 'var(--color-cyan-primary)',
             letterSpacing: '0.1em',
+            fontWeight: 700,
           }}
         >
           <span
@@ -452,8 +404,8 @@ export default function IntelligencePanel({ isVisible = true }) {
               width: 4,
               height: 4,
               borderRadius: '50%',
-              background: '#00ff88',
-              boxShadow: '0 0 5px rgba(0,255,136,0.7)',
+              background: 'var(--color-cyan-primary)',
+              boxShadow: '0 0 5px var(--color-cyan-glow)',
               animation: 'pulse-glow 2s ease-in-out infinite',
               display: 'inline-block',
             }}
@@ -505,8 +457,8 @@ export default function IntelligencePanel({ isVisible = true }) {
                       width: 1,
                       height: '100%',
                       background: activeStage === i
-                        ? 'rgba(0,229,255,0.35)'
-                        : 'rgba(255,255,255,0.06)',
+                        ? 'var(--color-cyan-primary)'
+                        : 'var(--color-border)',
                       transition: 'background 300ms ease',
                     }}
                   />
@@ -529,7 +481,7 @@ export default function IntelligencePanel({ isVisible = true }) {
           gridTemplateColumns: 'repeat(3, 1fr)',
           gap: '0.5rem',
           paddingTop: '0.6rem',
-          borderTop: '1px solid rgba(0,229,255,0.06)',
+          borderTop: '1px solid var(--color-border)',
         }}
       >
         {[
@@ -543,7 +495,7 @@ export default function IntelligencePanel({ isVisible = true }) {
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.78rem',
                 fontWeight: 700,
-                color: 'rgba(0,229,255,0.75)',
+                color: 'var(--color-cyan-primary)',
                 letterSpacing: '-0.01em',
               }}
             >
@@ -555,8 +507,9 @@ export default function IntelligencePanel({ isVisible = true }) {
                 fontSize: '0.5rem',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: 'rgba(148,163,184,0.3)',
+                color: 'var(--color-text-muted)',
                 marginTop: '0.1rem',
+                fontWeight: 600,
               }}
             >
               {m.label}

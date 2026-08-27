@@ -14,7 +14,7 @@ export default function AuthPortal() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#020509',
+        background: 'var(--color-bg-primary, #020509)',
         color: 'var(--color-text-primary)',
         overflowX: 'hidden',
         padding: '3rem 1rem',

@@ -1,17 +1,15 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import AIAnalystCore from '../../components/three/AIAnalystCore'
 import AnalystConsole from '../../components/ui/AnalystConsole'
 import ThreatAssessment from '../../components/ui/ThreatAssessment'
-import { DEMO_INCIDENT, DEMO_PROMPTS, queryAnalystDemo } from '../../utils/demoAnalystProvider'
+import { DEMO_INCIDENT } from '../../utils/demoAnalystProvider'
 
 // ---------------------------------------------------------------------------
 // AIAnalystSection — Section 5 Component
 // ---------------------------------------------------------------------------
 export default function AIAnalystSection() {
-  const [activePrompt, setActivePrompt] = useState(DEMO_PROMPTS[0])
-  const [isAnalyzing, setIsAnalyzing] = useState(false)
   const isTablet = useMediaQuery('(max-width: 1024px)')
   const isMobile = useMediaQuery('(max-width: 768px)')
   const sectionRef = useRef()
@@ -21,17 +19,6 @@ export default function AIAnalystSection() {
     offset: ['start end', 'end start'],
   })
   const sectionY = useTransform(scrollYProgress, [0, 1], ['2%', '-2%'])
-
-  const handleSelectPrompt = async (promptId) => {
-    if (isAnalyzing || activePrompt.id === promptId) return
-    setIsAnalyzing(true)
-    try {
-      const response = await queryAnalystDemo(promptId)
-      setActivePrompt(response)
-    } finally {
-      setIsAnalyzing(false)
-    }
-  }
 
   return (
     <section
@@ -174,7 +161,7 @@ export default function AIAnalystSection() {
             style={{
               display: 'grid',
               gridTemplateColumns: isTablet ? '1fr' : '0.85fr 1.15fr',
-              gap: isTablet ? '2.5rem' : '3.5rem',
+              gap: isTablet ? '2rem' : '3rem',
               alignItems: 'start',
             }}
           >
@@ -183,7 +170,7 @@ export default function AIAnalystSection() {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.75rem',
+                gap: '1.5rem',
                 position: isTablet ? 'relative' : 'sticky',
                 top: isTablet ? 0 : '6.5rem',
               }}
@@ -192,14 +179,14 @@ export default function AIAnalystSection() {
               <div
                 style={{
                   height: isMobile ? 220 : 280,
-                  background: 'rgba(5, 12, 20, 0.65)',
-                  border: '1px solid rgba(0, 229, 255, 0.12)',
+                  background: 'var(--color-glass-surface, rgba(5, 12, 20, 0.65))',
+                  border: '1px solid var(--color-border, rgba(0, 229, 255, 0.12))',
                   borderRadius: '0.35rem',
                   position: 'relative',
                   overflow: 'hidden',
                 }}
               >
-                <AIAnalystCore isAnalyzing={isAnalyzing} isMobile={isMobile} />
+                <AIAnalystCore isAnalyzing={false} isMobile={isMobile} />
 
                 {/* HUD Footer Status */}
                 <div
@@ -219,8 +206,8 @@ export default function AIAnalystSection() {
                   }}
                 >
                   <span>AI NEURAL ENGINE</span>
-                  <span style={{ color: isAnalyzing ? '#00ff88' : 'var(--color-cyan-primary)' }}>
-                    {isAnalyzing ? 'CORRELATING...' : 'IDLE / MONITORING'}
+                  <span style={{ color: '#00ff88' }}>
+                    ACTIVE / MONITORING
                   </span>
                 </div>
               </div>
@@ -228,18 +215,12 @@ export default function AIAnalystSection() {
               {/* Threat Assessment Panel */}
               <ThreatAssessment
                 incident={DEMO_INCIDENT}
-                activePayload={activePrompt}
-                isAnalyzing={isAnalyzing}
               />
             </div>
 
             {/* Right Column: Interactive Analyst Console */}
             <div>
-              <AnalystConsole
-                activePrompt={activePrompt}
-                isAnalyzing={isAnalyzing}
-                onSelectPrompt={handleSelectPrompt}
-              />
+              <AnalystConsole />
             </div>
           </div>
         </div>

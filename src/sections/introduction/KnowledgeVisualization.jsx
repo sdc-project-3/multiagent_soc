@@ -7,14 +7,14 @@ export default function KnowledgeVisualization({ isMobile = false }) {
   return (
     <div
       style={{
-        background: 'rgba(5, 12, 20, 0.75)',
-        border: '1px solid rgba(0, 229, 255, 0.14)',
+        background: 'var(--color-card-bg, #ffffff)',
+        border: '1px solid var(--color-card-border)',
         borderRadius: '0.35rem',
         padding: '1.25rem',
         position: 'relative',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        boxShadow: '0 15px 35px -10px rgba(2, 5, 9, 0.9), 0 0 25px rgba(0, 229, 255, 0.04)',
+        boxShadow: 'var(--color-card-shadow)',
       }}
     >
       {/* Corner HUD Accents */}
@@ -73,7 +73,7 @@ export default function KnowledgeVisualization({ isMobile = false }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+          borderBottom: '1px solid var(--color-border)',
           paddingBottom: '0.65rem',
           marginBottom: '1rem',
         }}
@@ -84,8 +84,8 @@ export default function KnowledgeVisualization({ isMobile = false }) {
               width: 6,
               height: 6,
               borderRadius: '50%',
-              background: '#00ff88',
-              boxShadow: '0 0 8px #00ff88',
+              background: 'var(--color-cyan-primary)',
+              boxShadow: '0 0 8px var(--color-cyan-glow)',
               animation: 'pulse-glow 2s infinite',
             }}
           />
@@ -107,11 +107,13 @@ export default function KnowledgeVisualization({ isMobile = false }) {
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '0.52rem',
-            color: 'rgba(0, 255, 136, 0.8)',
-            background: 'rgba(0, 255, 136, 0.1)',
+            color: 'var(--color-cyan-primary)',
+            background: 'var(--color-cyan-badge-bg)',
+            border: '1px solid var(--color-cyan-badge-border)',
             padding: '0.1rem 0.4rem',
             borderRadius: '0.12rem',
             letterSpacing: '0.08em',
+            fontWeight: 700,
           }}
         >
           ONLINE
@@ -142,9 +144,10 @@ export default function KnowledgeVisualization({ isMobile = false }) {
             cx="75"
             cy="75"
             r="65"
-            stroke="rgba(0, 229, 255, 0.25)"
+            stroke="var(--color-cyan-primary)"
             strokeWidth="1"
             strokeDasharray="6 6"
+            opacity="0.35"
             style={{
               animation: 'rotate-slow 35s linear infinite',
               transformOrigin: 'center',
@@ -156,9 +159,10 @@ export default function KnowledgeVisualization({ isMobile = false }) {
             cx="75"
             cy="75"
             r="48"
-            stroke="rgba(124, 58, 237, 0.35)"
+            stroke="var(--color-violet-primary)"
             strokeWidth="1.2"
             strokeDasharray="12 4"
+            opacity="0.4"
             style={{
               animation: 'rotate-slow 22s linear infinite reverse',
               transformOrigin: 'center',
@@ -170,8 +174,9 @@ export default function KnowledgeVisualization({ isMobile = false }) {
             cx="75"
             cy="75"
             r="32"
-            stroke="rgba(0, 229, 255, 0.5)"
+            stroke="var(--color-cyan-primary)"
             strokeWidth="1.4"
+            opacity="0.5"
           />
 
           {/* Central hexagon glyph */}
@@ -179,7 +184,7 @@ export default function KnowledgeVisualization({ isMobile = false }) {
             points="75,55 92,65 92,85 75,95 58,85 58,65"
             stroke="var(--color-cyan-primary)"
             strokeWidth="1.5"
-            fill="rgba(0, 229, 255, 0.08)"
+            fill="var(--color-cyan-badge-bg)"
           />
 
           {/* Center core pulse node */}
@@ -187,17 +192,17 @@ export default function KnowledgeVisualization({ isMobile = false }) {
             cx="75"
             cy="75"
             r="4"
-            fill="#00ff88"
+            fill="var(--color-cyan-primary)"
             style={{
-              filter: 'drop-shadow(0 0 6px #00ff88)',
+              filter: 'drop-shadow(0 0 6px var(--color-cyan-glow))',
             }}
           />
 
           {/* 4 Orbiting knowledge dots */}
-          <circle cx="75" cy="10" r="3" fill="#00e5ff" />
-          <circle cx="140" cy="75" r="3" fill="#a855f7" />
-          <circle cx="75" cy="140" r="3" fill="#00e5ff" />
-          <circle cx="10" cy="75" r="3" fill="#a855f7" />
+          <circle cx="75" cy="10" r="3" fill="var(--color-cyan-primary)" />
+          <circle cx="140" cy="75" r="3" fill="var(--color-violet-primary)" />
+          <circle cx="75" cy="140" r="3" fill="var(--color-cyan-primary)" />
+          <circle cx="10" cy="75" r="3" fill="var(--color-violet-primary)" />
         </svg>
       </div>
 
@@ -213,32 +218,32 @@ export default function KnowledgeVisualization({ isMobile = false }) {
       >
         <div
           style={{
-            background: 'rgba(2, 5, 9, 0.5)',
-            border: '1px solid rgba(255, 255, 255, 0.04)',
+            background: 'var(--color-bg-secondary, #f8fafc)',
+            border: '1px solid var(--color-border)',
             padding: '0.45rem 0.6rem',
             borderRadius: '0.15rem',
           }}
         >
-          <div style={{ color: 'rgba(148, 163, 184, 0.45)', textTransform: 'uppercase' }}>
+          <div style={{ color: 'var(--color-text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>
             INDEXED TOPICS
           </div>
-          <div style={{ color: 'var(--color-cyan-primary)', fontWeight: 700, marginTop: '0.15rem' }}>
+          <div style={{ color: 'var(--color-cyan-primary)', fontWeight: 800, marginTop: '0.15rem' }}>
             10 ARTICLES
           </div>
         </div>
 
         <div
           style={{
-            background: 'rgba(2, 5, 9, 0.5)',
-            border: '1px solid rgba(255, 255, 255, 0.04)',
+            background: 'var(--color-bg-secondary, #f8fafc)',
+            border: '1px solid var(--color-border)',
             padding: '0.45rem 0.6rem',
             borderRadius: '0.15rem',
           }}
         >
-          <div style={{ color: 'rgba(148, 163, 184, 0.45)', textTransform: 'uppercase' }}>
+          <div style={{ color: 'var(--color-text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>
             SPECIFICATION
           </div>
-          <div style={{ color: '#00ff88', fontWeight: 700, marginTop: '0.15rem' }}>
+          <div style={{ color: 'var(--color-cyan-primary)', fontWeight: 800, marginTop: '0.15rem' }}>
             TRANSPARENT ARCH
           </div>
         </div>

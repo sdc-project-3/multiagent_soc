@@ -30,14 +30,14 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
         gridTemplateColumns: isTablet ? '1fr' : '1fr 280px 1fr',
         gap: isTablet ? '1.5rem' : '1.75rem',
         alignItems: 'center',
-        background: 'rgba(5, 12, 20, 0.75)',
-        border: '1px solid rgba(0, 229, 255, 0.14)',
+        background: 'var(--color-card-bg, #ffffff)',
+        border: '1px solid var(--color-card-border)',
         borderRadius: '0.35rem',
         padding: 'clamp(1.25rem, 2.5vw, 1.75rem)',
         position: 'relative',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        boxShadow: '0 20px 45px -15px rgba(2, 5, 9, 0.95), 0 0 30px rgba(0, 229, 255, 0.04)',
+        boxShadow: 'var(--color-card-shadow)',
       }}
     >
       {/* Corner HUD Accents */}
@@ -49,8 +49,8 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
           left: 0,
           width: 10,
           height: 10,
-          borderTop: '2px solid rgba(0, 229, 255, 0.4)',
-          borderLeft: '2px solid rgba(0, 229, 255, 0.4)',
+          borderTop: '2px solid var(--color-cyan-primary)',
+          borderLeft: '2px solid var(--color-cyan-primary)',
         }}
       />
       <div
@@ -61,8 +61,8 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
           right: 0,
           width: 10,
           height: 10,
-          borderTop: '2px solid rgba(0, 229, 255, 0.4)',
-          borderRight: '2px solid rgba(0, 229, 255, 0.4)',
+          borderTop: '2px solid var(--color-cyan-primary)',
+          borderRight: '2px solid var(--color-cyan-primary)',
         }}
       />
       <div
@@ -73,8 +73,8 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
           left: 0,
           width: 10,
           height: 10,
-          borderBottom: '2px solid rgba(0, 229, 255, 0.4)',
-          borderLeft: '2px solid rgba(0, 229, 255, 0.4)',
+          borderBottom: '2px solid var(--color-cyan-primary)',
+          borderLeft: '2px solid var(--color-cyan-primary)',
         }}
       />
       <div
@@ -85,16 +85,16 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
           right: 0,
           width: 10,
           height: 10,
-          borderBottom: '2px solid rgba(0, 229, 255, 0.4)',
-          borderRight: '2px solid rgba(0, 229, 255, 0.4)',
+          borderBottom: '2px solid var(--color-cyan-primary)',
+          borderRight: '2px solid var(--color-cyan-primary)',
         }}
       />
 
       {/* ── LEFT: THE PROBLEM (Chaotic signals) ─────────────────── */}
       <div
         style={{
-          background: 'rgba(2, 5, 9, 0.65)',
-          border: '1px solid rgba(255, 77, 109, 0.18)',
+          background: 'var(--color-bg-secondary, #f8fafc)',
+          border: '1px solid rgba(239, 68, 68, 0.25)',
           borderRadius: '0.25rem',
           padding: '1.1rem',
           display: 'flex',
@@ -107,7 +107,7 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: '1px solid rgba(255, 77, 109, 0.12)',
+            borderBottom: '1px solid rgba(239, 68, 68, 0.2)',
             paddingBottom: '0.5rem',
           }}
         >
@@ -116,7 +116,7 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
               fontFamily: 'var(--font-mono)',
               fontSize: '0.6rem',
               fontWeight: 800,
-              color: '#ff758c',
+              color: '#ef4444',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
             }}
@@ -127,10 +127,11 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.5rem',
-              color: 'rgba(255, 117, 140, 0.7)',
-              background: 'rgba(255, 117, 140, 0.1)',
+              color: '#ef4444',
+              background: 'rgba(239, 68, 68, 0.1)',
               padding: '0.08rem 0.35rem',
               borderRadius: '0.1rem',
+              fontWeight: 700,
             }}
           >
             SIGNAL OVERLOAD
@@ -140,7 +141,7 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
         <p
           style={{
             fontSize: '0.75rem',
-            color: 'rgba(148, 163, 184, 0.75)',
+            color: 'var(--color-text-secondary)',
             lineHeight: 1.5,
             margin: 0,
           }}
@@ -157,8 +158,8 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                background: 'rgba(255, 255, 255, 0.02)',
-                border: '1px solid rgba(255, 255, 255, 0.04)',
+                background: 'var(--color-card-bg, #ffffff)',
+                border: '1px solid var(--color-border)',
                 padding: '0.3rem 0.5rem',
                 borderRadius: '0.15rem',
                 fontFamily: 'var(--font-mono)',
@@ -174,9 +175,9 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
                     background: sig.color,
                   }}
                 />
-                <span style={{ color: 'var(--color-text-primary)' }}>{sig.type}</span>
+                <span style={{ color: 'var(--color-text-primary)', fontWeight: 600 }}>{sig.type}</span>
               </div>
-              <span style={{ color: 'rgba(148, 163, 184, 0.45)' }}>{sig.status}</span>
+              <span style={{ color: 'var(--color-text-muted)', fontWeight: 500 }}>{sig.status}</span>
             </div>
           ))}
         </div>
@@ -201,9 +202,10 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
             fontFamily: 'var(--font-mono)',
             fontSize: '0.52rem',
             letterSpacing: '0.12em',
-            color: 'rgba(0, 229, 255, 0.5)',
+            color: 'var(--color-cyan-primary)',
             textTransform: 'uppercase',
             textAlign: 'center',
+            fontWeight: 700,
           }}
         >
           INTELLIGENCE LAYER
@@ -213,8 +215,8 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
       {/* ── RIGHT: THE INTELLIGENCE LAYER (Ordered clarity) ────── */}
       <div
         style={{
-          background: 'rgba(2, 5, 9, 0.65)',
-          border: '1px solid rgba(0, 229, 255, 0.18)',
+          background: 'var(--color-bg-secondary, #f8fafc)',
+          border: '1px solid var(--color-border)',
           borderRadius: '0.25rem',
           padding: '1.1rem',
           display: 'flex',
@@ -227,7 +229,7 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: '1px solid rgba(0, 229, 255, 0.12)',
+            borderBottom: '1px solid var(--color-border)',
             paddingBottom: '0.5rem',
           }}
         >
@@ -247,10 +249,12 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.5rem',
-              color: '#00ff88',
-              background: 'rgba(0, 255, 136, 0.1)',
+              color: 'var(--color-cyan-primary)',
+              background: 'var(--color-cyan-badge-bg)',
+              border: '1px solid var(--color-cyan-badge-border)',
               padding: '0.08rem 0.35rem',
               borderRadius: '0.1rem',
+              fontWeight: 700,
             }}
           >
             ACTIONABLE OUTPUT
@@ -260,7 +264,7 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
         <p
           style={{
             fontSize: '0.75rem',
-            color: 'rgba(148, 163, 184, 0.75)',
+            color: 'var(--color-text-secondary)',
             lineHeight: 1.5,
             margin: 0,
           }}
@@ -277,8 +281,8 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                background: 'rgba(0, 229, 255, 0.03)',
-                border: '1px solid rgba(0, 229, 255, 0.1)',
+                background: 'var(--color-card-bg, #ffffff)',
+                border: '1px solid var(--color-border)',
                 padding: '0.3rem 0.5rem',
                 borderRadius: '0.15rem',
                 fontFamily: 'var(--font-mono)',
@@ -295,10 +299,10 @@ export default function ProblemSignalField({ activeIndex, isMobile, isTablet }) 
                     boxShadow: `0 0 5px ${ord.color}`,
                   }}
                 />
-                <span style={{ color: 'rgba(148, 163, 184, 0.6)' }}>{ord.label}:</span>
-                <span style={{ color: ord.color, fontWeight: 700 }}>{ord.value}</span>
+                <span style={{ color: 'var(--color-text-muted)', fontWeight: 600 }}>{ord.label}:</span>
+                <span style={{ color: ord.color, fontWeight: 800 }}>{ord.value}</span>
               </div>
-              <span style={{ color: 'rgba(255, 255, 255, 0.45)', fontSize: '0.5rem' }}>{ord.tag}</span>
+              <span style={{ color: 'var(--color-text-muted)', fontSize: '0.5rem', fontWeight: 600 }}>{ord.tag}</span>
             </div>
           ))}
         </div>
