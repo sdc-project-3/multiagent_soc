@@ -26,7 +26,9 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: 'var(--color-bg-secondary, #010306)',
+        background: 'rgba(1, 3, 6, 0.72)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
         borderTop: '1px solid var(--color-border, rgba(0, 255, 136, 0.08))',
         position: 'relative',
         zIndex: 10,

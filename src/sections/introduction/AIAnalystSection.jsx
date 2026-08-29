@@ -27,7 +27,7 @@ export default function AIAnalystSection() {
       aria-label="AI Security Analyst"
       style={{
         position: 'relative',
-        background: 'var(--color-bg-primary)',
+        background: 'transparent',
         overflow: 'hidden',
         borderTop: '1px solid rgba(0, 229, 255, 0.08)',
         paddingTop: 'clamp(5rem, 10vh, 8rem)',

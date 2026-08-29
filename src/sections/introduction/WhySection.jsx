@@ -56,7 +56,7 @@ export default function WhySection() {
       aria-label="Why It Matters"
       style={{
         position: 'relative',
-        background: 'var(--color-bg-primary)',
+        background: 'transparent',
         overflow: 'hidden',
         borderTop: '1px solid var(--color-border)',
         paddingTop: 'clamp(5rem, 10vh, 8rem)',

@@ -12,110 +12,148 @@ import useCanvasVisibility from '../../hooks/useCanvasVisibility'
 function CentralOrb({ activeIndex }) {
   const meshRef = useRef()
   const innerRef = useRef()
+  const outerShieldRef = useRef()
 
   useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x += delta * 0.4
-      meshRef.current.rotation.y += delta * 0.6
-      const pulse = 1 + Math.sin(state.clock.elapsedTime * 2.5) * 0.05
+      meshRef.current.rotation.x += delta * 0.45
+      meshRef.current.rotation.y += delta * 0.65
+      const pulse = 1 + Math.sin(state.clock.elapsedTime * 2.8) * 0.07
       meshRef.current.scale.setScalar(pulse)
     }
     if (innerRef.current) {
-      innerRef.current.rotation.y -= delta * 0.8
-      innerRef.current.rotation.z += delta * 0.3
+      innerRef.current.rotation.y -= delta * 0.9
+      innerRef.current.rotation.z += delta * 0.4
+      const innerPulse = 1 + Math.cos(state.clock.elapsedTime * 3.2) * 0.05
+      innerRef.current.scale.setScalar(innerPulse)
+    }
+    if (outerShieldRef.current) {
+      outerShieldRef.current.rotation.x -= delta * 0.25
+      outerShieldRef.current.rotation.y -= delta * 0.35
     }
   })
 
-  const coreColor = activeIndex !== null ? '#ccff00' : '#84cc16'
-  const emissiveColor = activeIndex !== null ? '#22c55e' : '#15803d'
+  const isHighlighted = activeIndex !== null
+  const coreColor = isHighlighted ? '#ccff00' : '#00ff88'
+  const emissiveColor = isHighlighted ? '#4ade80' : '#10b981'
 
   return (
     <group>
-      {/* Outer faceted shield */}
-      <mesh ref={meshRef}>
-        <octahedronGeometry args={[0.75, 1]} />
+      {/* Outer faceted geometric shield */}
+      <mesh ref={outerShieldRef}>
+        <icosahedronGeometry args={[1.05, 0]} />
         <meshStandardMaterial
-          color={coreColor}
-          emissive={emissiveColor}
-          emissiveIntensity={1.2}
+          color="#00ff88"
+          emissive="#00ff88"
+          emissiveIntensity={0.5}
           wireframe
           transparent
-          opacity={0.7}
+          opacity={0.35}
         />
       </mesh>
 
-      {/* Inner energy core */}
+      {/* Middle faceted shield */}
+      <mesh ref={meshRef}>
+        <octahedronGeometry args={[0.82, 1]} />
+        <meshStandardMaterial
+          color={coreColor}
+          emissive={emissiveColor}
+          emissiveIntensity={1.4}
+          wireframe
+          transparent
+          opacity={0.75}
+        />
+      </mesh>
+
+      {/* Inner solid energy nucleus */}
       <mesh ref={innerRef}>
-        <icosahedronGeometry args={[0.42, 0]} />
+        <icosahedronGeometry args={[0.48, 0]} />
         <meshBasicMaterial
           color="#ccff00"
           wireframe={false}
           transparent
-          opacity={0.85}
+          opacity={0.9}
         />
       </mesh>
 
-      {/* Center point glow */}
-      <pointLight color="#ccff00" intensity={2.8} distance={4} />
-      <pointLight color="#22c55e" intensity={2} distance={3} />
+      {/* Core Point Glow Lights */}
+      <pointLight color="#00ff88" intensity={3.5} distance={6} />
+      <pointLight color="#ccff00" intensity={2.5} distance={4} />
+      <pointLight color="#a855f7" intensity={1.8} distance={5} />
     </group>
   )
 }
 
-/** Concentric orbital holographic rings */
+/** Concentric multi-axis orbital holographic rings with cyber accents */
 function CoreHoloRings({ activeIndex }) {
   const ring1Ref = useRef()
   const ring2Ref = useRef()
   const ring3Ref = useRef()
+  const ring4Ref = useRef()
 
   useFrame((_, delta) => {
     if (ring1Ref.current) {
-      ring1Ref.current.rotation.x += delta * 0.2
-      ring1Ref.current.rotation.y += delta * 0.35
+      ring1Ref.current.rotation.x += delta * 0.25
+      ring1Ref.current.rotation.y += delta * 0.4
     }
     if (ring2Ref.current) {
-      ring2Ref.current.rotation.y -= delta * 0.25
-      ring2Ref.current.rotation.z += delta * 0.15
+      ring2Ref.current.rotation.y -= delta * 0.3
+      ring2Ref.current.rotation.z += delta * 0.2
     }
     if (ring3Ref.current) {
-      ring3Ref.current.rotation.x -= delta * 0.15
-      ring3Ref.current.rotation.z -= delta * 0.3
+      ring3Ref.current.rotation.x -= delta * 0.2
+      ring3Ref.current.rotation.z -= delta * 0.35
+    }
+    if (ring4Ref.current) {
+      ring4Ref.current.rotation.x += delta * 0.15
+      ring4Ref.current.rotation.y -= delta * 0.2
     }
   })
 
-  const highlight = activeIndex !== null
+  const isHighlighted = activeIndex !== null
 
   return (
     <group>
-      {/* Inner fast ring */}
+      {/* Inner fast glowing cyan ring */}
       <mesh ref={ring1Ref}>
-        <torusGeometry args={[1.25, 0.012, 8, 64]} />
+        <torusGeometry args={[1.35, 0.014, 8, 64]} />
+        <meshBasicMaterial
+          color="#00ff88"
+          transparent
+          opacity={isHighlighted ? 0.75 : 0.5}
+          blending={THREE.AdditiveBlending}
+        />
+      </mesh>
+
+      {/* Mid tilted lime/green ring */}
+      <mesh ref={ring2Ref} rotation={[0.45, 0.25, 0]}>
+        <torusGeometry args={[1.75, 0.012, 8, 64]} />
         <meshBasicMaterial
           color="#ccff00"
           transparent
-          opacity={highlight ? 0.65 : 0.35}
+          opacity={isHighlighted ? 0.65 : 0.4}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
 
-      {/* Mid tilted ring */}
-      <mesh ref={ring2Ref} rotation={[0.4, 0.2, 0]}>
-        <torusGeometry args={[1.65, 0.01, 8, 64]} />
+      {/* Outer subtle cyber purple accent ring */}
+      <mesh ref={ring3Ref} rotation={[-0.35, 0.55, 0.2]}>
+        <torusGeometry args={[2.15, 0.01, 8, 64]} />
         <meshBasicMaterial
-          color="#22c55e"
+          color="#a855f7"
           transparent
-          opacity={highlight ? 0.55 : 0.28}
+          opacity={isHighlighted ? 0.6 : 0.32}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
 
-      {/* Outer ring */}
-      <mesh ref={ring3Ref} rotation={[-0.3, 0.5, 0]}>
-        <torusGeometry args={[2.05, 0.008, 8, 64]} />
+      {/* Wide equatorial boundary ring */}
+      <mesh ref={ring4Ref} rotation={[0.8, -0.4, 0.1]}>
+        <torusGeometry args={[2.45, 0.008, 8, 64]} />
         <meshBasicMaterial
-          color="#84cc16"
+          color="#00ff88"
           transparent
-          opacity={highlight ? 0.45 : 0.22}
+          opacity={isHighlighted ? 0.45 : 0.2}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
@@ -123,22 +161,25 @@ function CoreHoloRings({ activeIndex }) {
   )
 }
 
-/** 6 Orbiting capability satellite nodes */
+/** 6 Orbiting capability satellite telemetry nodes */
 function SatelliteNodes({ activeIndex }) {
   const nodesRef = useRef([])
 
   // 6 radial angles (60 degrees each)
-  const nodeAngles = useMemo(() => [0, 60, 120, 180, 240, 300].map((deg) => (deg * Math.PI) / 180), [])
+  const nodeAngles = useMemo(
+    () => [0, 60, 120, 180, 240, 300].map((deg) => (deg * Math.PI) / 180),
+    []
+  )
 
-  useFrame((state, delta) => {
-    const t = state.clock.elapsedTime * 0.3
+  useFrame((state) => {
+    const t = state.clock.elapsedTime * 0.35
     nodeAngles.forEach((baseAngle, i) => {
       const mesh = nodesRef.current[i]
       if (!mesh) return
       const angle = baseAngle + t
-      const radius = 1.65
+      const radius = 1.85
       mesh.position.x = Math.cos(angle) * radius
-      mesh.position.y = Math.sin(angle * 0.8) * 0.35
+      mesh.position.y = Math.sin(angle * 1.2) * 0.45
       mesh.position.z = Math.sin(angle) * radius
     })
   })
@@ -151,13 +192,21 @@ function SatelliteNodes({ activeIndex }) {
           <mesh
             key={i}
             ref={(el) => (nodesRef.current[i] = el)}
-            scale={isCurrent ? 1.4 : 1.0}
+            scale={isCurrent ? 1.6 : 1.0}
           >
-            <sphereGeometry args={[0.065, 8, 8]} />
+            <sphereGeometry args={[0.075, 12, 12]} />
             <meshBasicMaterial
-              color={isCurrent ? '#ccff00' : i % 2 === 0 ? '#84cc16' : '#22c55e'}
+              color={
+                isCurrent
+                  ? '#ccff00'
+                  : i === 2 || i === 4
+                  ? '#a855f7'
+                  : i % 2 === 0
+                  ? '#00ff88'
+                  : '#4ade80'
+              }
               transparent
-              opacity={isCurrent ? 1 : 0.65}
+              opacity={isCurrent ? 1 : 0.75}
               blending={THREE.AdditiveBlending}
             />
           </mesh>
@@ -168,12 +217,12 @@ function SatelliteNodes({ activeIndex }) {
 }
 
 /** Ambient particle dust around core */
-function CoreParticles({ count = 80 }) {
+function CoreParticles({ count = 100 }) {
   const { positions } = useMemo(() => {
     const positions = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
       const i3 = i * 3
-      const radius = 0.8 + Math.random() * 1.6
+      const radius = 0.9 + Math.random() * 1.9
       const theta = Math.random() * Math.PI * 2
       const phi = Math.acos(Math.random() * 2 - 1)
 
@@ -188,7 +237,8 @@ function CoreParticles({ count = 80 }) {
 
   useFrame((_, delta) => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y += delta * 0.08
+      pointsRef.current.rotation.y += delta * 0.09
+      pointsRef.current.rotation.x += delta * 0.03
     }
   })
 
@@ -198,10 +248,10 @@ function CoreParticles({ count = 80 }) {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        color="#a3e635"
-        size={0.022}
+        color="#00ff88"
+        size={0.026}
         transparent
-        opacity={0.4}
+        opacity={0.45}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
@@ -212,8 +262,9 @@ function CoreParticles({ count = 80 }) {
 // ---------------------------------------------------------------------------
 // CapabilityCore — Exported 3D Component Canvas
 // ---------------------------------------------------------------------------
-export default function CapabilityCore({ activeIndex = null, isMobile = false }) {
-  const [containerRef, isVisible] = useCanvasVisibility({ rootMargin: '100px' })
+export default function CapabilityCore({ activeIndex = null, isMobile = false, isSectionInView = true }) {
+  const [containerRef, isVisible] = useCanvasVisibility({ rootMargin: '120px' })
+  const shouldRender = isVisible && isSectionInView
 
   return (
     <div
@@ -230,8 +281,8 @@ export default function CapabilityCore({ activeIndex = null, isMobile = false })
       }}
     >
       <Canvas
-        frameloop={isVisible ? 'always' : 'never'}
-        camera={{ position: [0, 0, 4.4], fov: 45 }}
+        frameloop={shouldRender ? 'always' : 'never'}
+        camera={{ position: [0, 0, 4.3], fov: 44 }}
         dpr={[1, 1.5]}
         gl={{
           alpha: true,
@@ -241,11 +292,11 @@ export default function CapabilityCore({ activeIndex = null, isMobile = false })
         style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
       >
         <AdaptiveDpr pixelated />
-        <ambientLight intensity={0.4} />
+        <ambientLight intensity={0.5} />
         <CentralOrb activeIndex={activeIndex} />
         <CoreHoloRings activeIndex={activeIndex} />
         {!isMobile && <SatelliteNodes activeIndex={activeIndex} />}
-        <CoreParticles count={isMobile ? 35 : 75} />
+        <CoreParticles count={isMobile ? 40 : 100} />
       </Canvas>
     </div>
   )

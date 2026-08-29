@@ -514,54 +514,9 @@ export default function HeroSection() {
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
-        background: 'var(--color-bg-primary, #020509)',
+        background: 'transparent',
       }}
     >
-      {/* ================================================================ */}
-      {/* Layer 0 — Full-Screen Atmospheric Cyber Background Video          */}
-      {/* ================================================================ */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          overflow: 'hidden',
-          zIndex: 0,
-          pointerEvents: 'none',
-        }}
-      >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          disablePictureInPicture
-          controls={false}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center',
-            opacity: 0.28,
-            filter: 'contrast(1.1) brightness(0.85)',
-          }}
-        >
-          <source src="/background.mp4" type="video/mp4" />
-        </video>
-
-        {/* Ambient violet energy gradient */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'radial-gradient(ellipse at 70% 50%, rgba(124, 58, 237, 0.08) 0%, transparent 60%)',
-          }}
-        />
-      </div>
-
       {/* ================================================================ */}
       {/* Layer 1 — 3D Canvas (particles, streams, grid in background)     */}
       {/* ================================================================ */}
@@ -586,7 +541,7 @@ export default function HeroSection() {
       {/* Layer 2 — Cinematic gradient overlays                            */}
       {/* ================================================================ */}
 
-      {/* Bottom vignette — blends 100% smoothly into Section 2 */}
+      {/* Bottom subtle ambient gradient */}
       <div
         aria-hidden="true"
         style={{
@@ -595,7 +550,7 @@ export default function HeroSection() {
           left: 0,
           right: 0,
           height: '42%',
-          background: 'linear-gradient(to bottom, transparent 0%, var(--color-hero-vignette) 50%, var(--color-bg-primary) 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(2, 5, 9, 0.25) 50%, rgba(2, 5, 9, 0.45) 100%)',
           zIndex: 2,
           pointerEvents: 'none',
         }}
